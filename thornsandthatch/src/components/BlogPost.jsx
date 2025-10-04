@@ -10,7 +10,8 @@ const blogPosts = [
       lavender. It's the perfect setting for photoshoots, weddings, and peaceful retreats.
     `,
     date: "September 25, 2025",
-    image: "/blog/b1.jpg",
+    image:
+      "https://cdn.pixabay.com/photo/2014/01/14/08/28/sunset-244208_640.jpg",
   },
   {
     id: 2,

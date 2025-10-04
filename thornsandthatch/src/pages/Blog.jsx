@@ -8,7 +8,8 @@ const blogPosts = [
     excerpt:
       "Discover the vibrant colors and fresh beginnings that our gardens bring each spring.",
     date: "September 25, 2025",
-    image: "/blog/b1.jpg",
+    image:
+      "https://cdn.pixabay.com/photo/2016/11/21/15/58/wedding-1846114_640.jpg",
     category: "Events",
   },
   {
@@ -17,7 +18,8 @@ const blogPosts = [
     excerpt:
       "Tips and inspiration for creating unforgettable moments surrounded by nature.",
     date: "September 10, 2025",
-    image: "/blog/b2.jpg",
+    image:
+      "https://scontent.fnbo8-1.fna.fbcdn.net/v/t39.30808-6/469838363_1119142069727983_2871413534980124997_n.jpg?_nc_cat=103&ccb=1-7&_nc_sid=833d8c&_nc_ohc=6t35XHax1FUQ7kNvwFJFfkk&_nc_oc=Admg3CCPNpyCD88scjWb8piUXlexCTrOg8U1GixSCKrQ2O7dwtc9602rERoibqHTCEM&_nc_zt=23&_nc_ht=scontent.fnbo8-1.fna&_nc_gid=0f0UejWT68u9-H8QYwWSBw&oh=00_AfenO3gO9qTFi9eOJr61RHvOGHEyz1mXTUXtUU8ikrQ6kQ&oe=68E6C747",
     category: "Weddings",
   },
   {
