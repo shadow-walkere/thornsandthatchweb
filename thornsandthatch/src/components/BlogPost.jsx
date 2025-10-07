@@ -1,92 +1,74 @@
 import { useParams, Link } from "react-router-dom";
-import { motion } from "framer-motion";
 
 const blogPosts = [
   {
     id: 1,
-    title: "Forever Begins in Bloom – Our Garden Weddings",
+    title: "Enchanted Garden Weddings",
     content: `
-      There’s something truly timeless about saying “I do” beneath a canopy of blossoms. 
-      At Thorns & Thatch Gardens, we craft weddings where nature becomes your most elegant backdrop. 
-      From rose-lined aisles to candlelit receptions, every detail whispers romance.
-      
-      Our wedding experts collaborate with couples to design personalized themes, floral arrangements, 
-      and ambient lighting — ensuring your day is as magical as your love story. 
-      Come, let your forever begin in bloom.
+      Step into a world of romance surrounded by flowers and candlelight. 
+      Our gardens transform into breathtaking wedding venues that blend natural elegance with timeless charm. 
+      From floral arches to evening lanterns, we ensure every moment feels magical.
     `,
     date: "September 25, 2025",
-    image: "/assets/weddingblog.jpg",
+    image: "/assets/wedding1.jpg",
     category: "Weddings",
   },
   {
     id: 2,
-    title: "Flavors of the Garden – Food & Drinks Inspired by Nature",
+    title: "A Taste of Nature: Food & Drinks at Thorns & Thatch",
     content: `
-      From farm-fresh platters to handcrafted cocktails infused with herbs from our own garden, 
-      Thorns & Thatch offers a culinary experience that celebrates nature’s bounty.
-      
-      Whether it’s a brunch beneath the trees or an evening soirée with garden-to-table delicacies, 
-      every dish is a story — fresh, colorful, and crafted to delight all senses. 
-      Our chefs blend artistry and sustainability, ensuring each bite is a memory.
+      Delight your senses with our garden-inspired cuisine — freshly, organic vegetables, palatable meals
+      and signature drinks crafted with floral infusions. Whether it's brunch under the trees or 
+      an evening dinner by candlelight, every dish celebrates nature’s bounty.
     `,
-    date: "September 18, 2025",
-    image: "/assets/foodblog.jpg",
+    date: "September 10, 2025",
+    image: "/assets/food2.jpg",
     category: "Food & Drinks",
   },
   {
     id: 3,
-    title: "Stay a While – Tranquil Accommodation in Nature’s Lap",
+    title: "Comfort in the Garden: Stay at Our Cottage Suites",
     content: `
-      Escape the noise and find serenity in our boutique cottages surrounded by whispering trees. 
-      Our accommodations offer rustic charm with a touch of modern luxury.
-      
-      Wake up to birdsong, enjoy coffee on your private patio, and fall asleep under starlit skies. 
-      At Thorns & Thatch Gardens, every stay feels like a dream retreat.
+      Nestled among the blooms are our cozy garden cottages, offering peace, privacy, and comfort. 
+      Wake up to birdsong, enjoy breakfast on your private patio, and let the serenity of nature restore your soul.
     `,
-    date: "August 30, 2025",
-    image: "/assets/accommodationblog.jpg",
+    date: "August 28, 2025",
+    image: "/assets/accommodation1.jpg",
     category: "Accommodation",
   },
   {
     id: 4,
-    title: "Together We Grow – Team Building in the Gardens",
+    title: "Team Building in Bloom",
     content: `
-      Forget boardrooms — let your team connect, collaborate, and create in a refreshing outdoor setting.
-      
-      Our team-building experiences combine fun, creativity, and purpose. 
-      From scavenger hunts in the gardens to picnic-style brainstorming sessions, 
-      we cultivate stronger bonds and brighter ideas among colleagues.
+      Reconnect, collaborate, and grow together in an inspiring outdoor environment. 
+      From team challenges to group picnics and creative workshops, Thorns & Thatch provides 
+      the perfect space to spark creativity and strengthen bonds.
     `,
-    date: "August 15, 2025",
-    image: "/assets/teambuildblog.jpg",
+    date: "August 10, 2025",
+    image: "/assets/team1.jpg",
     category: "Team Building",
   },
   {
     id: 5,
-    title: "Picnics in Paradise – Simple Joys Among the Trees",
+    title: "Nature Infused Picnics",
     content: `
-      Lay down a blanket, open a basket, and let time slow down. 
-      Our curated picnic experiences bring together good food, laughter, and nature’s serenity.
-      
-      Whether for couples, families, or friends, a Thorns & Thatch picnic is more than a meal — 
-      it’s a moment of connection and calm, wrapped in beauty.
+      Picture a chilling afternoon surrounded by lush greenery, gentle breezes, and the sound of birdsong. 
+      Our picnic spots invite you to foster appreciation with the environment,
+      create new expeiences with your family.
     `,
-    date: "July 20, 2025",
-    image: "/assets/picnicblog.jpg",
+    date: "July 24, 2025",
+    image: "/assets/picnic2.jpg",
     category: "Picnics",
   },
   {
     id: 6,
-    title: "Celebrations in Full Bloom – Unforgettable Events",
+    title: "Events that Bloom",
     content: `
-      From intimate anniversaries to grand gatherings, our garden venues adapt to every celebration. 
-      String lights, flower walls, and open skies — each event feels like a page from a fairytale.
-      
-      Our event planners and decorators bring your vision to life with elegance, detail, and joy.
-      Celebrate life the way it deserves to be celebrated — naturally and beautifully.
+      From birthdays to bridal showers and corporate events, Thorns & Thatch offers spaces that adapt beautifully 
+      to every celebration. Add floral backdrops, string lights, and personalized touches for an unforgettable day.
     `,
-    date: "June 5, 2025",
-    image: "/assets/eventblog.jpg",
+    date: "July 10, 2025",
+    image: "/assets/event2.jpg",
     category: "Events",
   },
 ];
@@ -97,14 +79,11 @@ export default function BlogPost() {
 
   if (!post) {
     return (
-      <div className="px-8 py-20 max-w-4xl mx-auto text-center">
-        <h1 className="text-3xl font-bold text-[#7b6650] mb-4">
-          Post Not Found
+      <div className="px-8 py-16 max-w-4xl mx-auto text-center">
+        <h1 className="text-3xl font-bold text-amber-800 mb-4">
+          Post not found
         </h1>
-        <Link
-          to="/blog"
-          className="text-[#a17c50] hover:underline text-sm font-medium"
-        >
+        <Link to="/blog" className="text-amber-700 hover:underline">
           ← Back to Blog
         </Link>
       </div>
@@ -113,50 +92,34 @@ export default function BlogPost() {
 
   return (
     <div className="bg-[#FCF8F3] text-[#4a3c2a] font-serif">
-      {/* 🌿 Featured Banner */}
-      <section className="relative h-[45vh] sm:h-[55vh] flex items-center justify-center bg-cover bg-center">
-        <img
-          src={post.image}
-          alt={post.title}
-          className="absolute inset-0 w-full h-full object-cover object-center brightness-75"
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
-
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1 }}
-          className="relative z-10 text-center px-6 sm:px-10"
-        >
-          <p className="text-sm text-[#f7d9a4] uppercase tracking-widest mb-3">
-            {post.category}
+      {/* 🖼️ Hero Banner */}
+      <section
+        className="relative h-[40vh] sm:h-[55vh] flex items-center justify-center bg-cover bg-center rounded-b-3xl overflow-hidden"
+        style={{ backgroundImage: `url(${post.image})` }}
+      >
+        <div className="absolute inset-0 bg-black/50"></div>
+        <div className="relative z-10 text-center text-white px-4">
+          <h1 className="text-3xl sm:text-5xl font-light mb-3">{post.title}</h1>
+          <p className="text-sm sm:text-base italic text-gray-200">
+            {post.date} • {post.category}
           </p>
-          <h1 className="text-3xl sm:text-5xl font-light text-white mb-4">
-            {post.title}
-          </h1>
-          <p className="text-sm text-gray-300">{post.date}</p>
-        </motion.div>
+        </div>
       </section>
 
-      {/* 🌸 Blog Content */}
+      {/* ✨ Blog Content */}
       <section className="px-6 sm:px-10 py-16 max-w-4xl mx-auto">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          className="prose prose-lg text-[#5e4c3a] leading-relaxed"
-        >
+        <div className="prose prose-lg text-[#4a3c2a] max-w-none leading-relaxed">
           {post.content.split("\n").map((para, idx) => (
-            <p key={idx} className="mb-5">
-              {para.trim()}
+            <p key={idx} className="mb-6 text-[1.05rem] sm:text-lg">
+              {para}
             </p>
           ))}
-        </motion.div>
+        </div>
 
         <div className="mt-12 text-center">
           <Link
             to="/blog"
-            className="inline-block bg-[#7b6650] hover:bg-[#a17c50] text-white px-6 py-3 rounded-full text-sm font-medium shadow-lg transition-all"
+            className="inline-block bg-[#a17c50] hover:bg-[#7b6650] text-white px-6 py-3 rounded-full text-sm sm:text-base font-medium transition-all shadow-md"
           >
             ← Back to Blog
           </Link>

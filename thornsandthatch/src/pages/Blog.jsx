@@ -10,7 +10,7 @@ const blogPosts = [
     excerpt:
       "Step into a world of romance surrounded by flowers and candlelight. Discover how we turn garden spaces into dreamy wedding venues.",
     date: "September 25, 2025",
-    image: "/assets/wedding.jpg",
+    image: "/assets/wedding1.jpg",
     category: "Weddings",
   },
   {
@@ -19,7 +19,7 @@ const blogPosts = [
     excerpt:
       "From freshly brewed garden teas to chef-inspired farm-to-table meals, our menu is a tribute to nature’s flavors.",
     date: "September 10, 2025",
-    image: "/assets/food.jpg",
+    image: "/assets/food1.jpg",
     category: "Food & Drinks",
   },
   {
@@ -28,7 +28,7 @@ const blogPosts = [
     excerpt:
       "Relax in cozy accommodation surrounded by lush gardens, gentle breezes, and the songs of nature.",
     date: "August 28, 2025",
-    image: "/assets/accommodation.jpg",
+    image: "/assets/accomodation.jpg",
     category: "Accommodation",
   },
   {
@@ -37,16 +37,16 @@ const blogPosts = [
     excerpt:
       "From group challenges to creative outdoor workshops, our gardens provide the perfect setting for team bonding and growth.",
     date: "August 10, 2025",
-    image: "/assets/teambuilding.jpg",
+    image: "/assets/picnics1.jpg",
     category: "Team Building",
   },
   {
     id: 5,
-    title: "Picnics by the Pond",
+    title: "Nature-Infused picnics",
     excerpt:
-      "Unwind with a classic picnic surrounded by nature’s charm — wicker baskets, cozy blankets, and tranquil views included.",
+      "Unwind with a classic picnic surrounded by nature’s charm — wicker baskets, and tranquil views included.",
     date: "July 24, 2025",
-    image: "/assets/picnic.jpg",
+    image: "/assets/picnics2.jpg",
     category: "Picnics",
   },
   {
@@ -55,7 +55,7 @@ const blogPosts = [
     excerpt:
       "Whether it's a birthday, baby shower, or corporate event, our spaces adapt to create magical experiences for every occasion.",
     date: "July 10, 2025",
-    image: "/assets/events.jpg",
+    image: "/assets/event1.jpg",
     category: "Events",
   },
 ];

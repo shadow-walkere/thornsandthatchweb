@@ -19,41 +19,41 @@ export default function Gallery() {
   const [filter, setFilter] = useState("All");
   const [selectedIndex, setSelectedIndex] = useState(null);
 
-  // ✅ Gallery categories
+  // ✅ Local gallery images
   const categories = {
     All: [
-      "https://cdn.pixabay.com/photo/2015/03/26/09/54/hotel-690084_1280.jpg",
-      "https://cdn.pixabay.com/photo/2016/07/08/16/28/wedding-1506004_1280.jpg",
-      "https://cdn.pixabay.com/photo/2018/04/16/20/23/dinner-3329079_1280.jpg",
-      "https://cdn.pixabay.com/photo/2017/02/20/15/28/team-2087527_1280.jpg",
-      "https://cdn.pixabay.com/photo/2017/06/09/09/25/picnic-2384433_1280.jpg",
-      "https://cdn.pixabay.com/photo/2016/03/26/13/09/event-1281638_1280.jpg",
+      "/assets/accomodation2.jpg",
+      "/assets/babyshower.jpg",
+      "/assets/wine.jpg",
+      "/assets/childpark1.jpg",
+      "/assets/chirdpark2.jpg",
+      "/assets/event2.jpg",
     ],
     Weddings: [
-      "https://cdn.pixabay.com/photo/2014/11/11/22/50/wedding-527307_1280.jpg",
-      "https://cdn.pixabay.com/photo/2016/03/27/19/17/wedding-1284245_1280.jpg",
-      "https://cdn.pixabay.com/photo/2016/07/08/16/28/wedding-1506004_1280.jpg",
+      "/assets/wedding1.jpg",
+      "/assets/wedding2.jpg",
+      "/assets/wedding3.jpg",
     ],
     "Food & Drinks": [
-      "https://cdn.pixabay.com/photo/2016/11/21/15/46/dinner-1846082_1280.jpg",
-      "https://cdn.pixabay.com/photo/2016/03/05/19/02/hamburger-1238246_1280.jpg",
-      "https://cdn.pixabay.com/photo/2017/02/24/13/25/restaurant-2097945_1280.jpg",
+      "/assets/food1.jpg",
+      "/assets/food2.jpg",
+      "/assets/food3.jpg",
     ],
     Accommodation: [
-      "https://cdn.pixabay.com/photo/2017/06/13/12/33/hotel-room-2391369_1280.jpg",
-      "https://cdn.pixabay.com/photo/2015/03/26/09/54/hotel-690084_1280.jpg",
+      "/assets/accomodation.jpg",
+      "/assets/accomodation2.jpg",
+      "/assets/photoshoot3.jpg",
     ],
-    "Team Building": [
-      "https://cdn.pixabay.com/photo/2018/01/22/19/28/team-3094525_1280.jpg",
-      "https://cdn.pixabay.com/photo/2017/02/20/15/28/team-2087527_1280.jpg",
-    ],
+    "Team Building": ["/assets/meeting1.jpg", "/assets/house2.jpg"],
     Picnics: [
-      "https://cdn.pixabay.com/photo/2017/06/09/09/25/picnic-2384433_1280.jpg",
-      "https://cdn.pixabay.com/photo/2016/02/19/10/00/picnic-1208229_1280.jpg",
+      "/assets/picnics1.jpg",
+      "/assets/picnics2.jpg",
+      "/assets/picnics3.jpg",
     ],
     Events: [
-      "https://cdn.pixabay.com/photo/2016/03/26/13/09/event-1281638_1280.jpg",
-      "https://cdn.pixabay.com/photo/2015/03/26/10/03/conference-690661_1280.jpg",
+      "/assets/eventplace1.jpg",
+      "/assets/event2.jpg",
+      "/assets/seats1.jpg",
     ],
   };
 
@@ -69,7 +69,7 @@ export default function Gallery() {
       (prev) => (prev - 1 + filteredImages.length) % filteredImages.length
     );
 
-  // Close lightbox with keyboard
+  // ✅ Keyboard controls
   useEffect(() => {
     const handleKey = (e) => {
       if (e.key === "Escape") setSelectedIndex(null);
@@ -86,8 +86,7 @@ export default function Gallery() {
       <section
         className="relative h-[50vh] flex items-center justify-center bg-cover bg-center"
         style={{
-          backgroundImage:
-            "url('https://cdn.pixabay.com/photo/2020/03/29/10/59/house-4980256_1280.jpg')",
+          backgroundImage: "url('/assets/gallery-hero.jpg')",
         }}
       >
         <div className="absolute inset-0 bg-black/60"></div>
