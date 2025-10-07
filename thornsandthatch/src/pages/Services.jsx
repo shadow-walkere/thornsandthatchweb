@@ -14,28 +14,28 @@ export default function Services() {
       description:
         "Host memorable conferences, weddings, birthdays, and retreats in our serene and well-equipped spaces designed for elegance and comfort.",
       image:
-        "https://images.unsplash.com/photo-1551836022-4c4c79ecde51?auto=format&fit=crop&w=1600&q=80",
+        "https://i.pinimg.com/1200x/ad/4e/0d/ad4e0dd2516b074e99b5e0adc4419d9f.jpg",
     },
     {
       title: "🎠 Kids Park",
       description:
         "A fun, safe, and exciting play area for children — filled with laughter, adventure, and family joy amidst nature.",
       image:
-        "https://images.unsplash.com/photo-1614962922436-f9e9eae8bb0c?auto=format&fit=crop&w=1600&q=80",
+        "https://i.pinimg.com/1200x/22/75/2e/22752e19847e3b0cae24396a7cee8acc.jpg",
     },
     {
       title: "📸 Photoshoots & Filming",
       description:
         "Capture beautiful memories or film stunning scenes in our picture-perfect landscapes and tranquil gardens.",
       image:
-        "https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?auto=format&fit=crop&w=1600&q=80",
+        "https://i.pinimg.com/736x/d9/b8/29/d9b829fe930c1734d6bc8a7e935097dc.jpg",
     },
     {
       title: "🌳 Picnic & Parties",
       description:
         "Enjoy the outdoors with your loved ones! Our picnic lawns and private gazebos are perfect for laid-back gatherings and celebrations.",
       image:
-        "https://images.unsplash.com/photo-1498579150354-977475b7ea0b?auto=format&fit=crop&w=1600&q=80",
+        "https://i.pinimg.com/736x/97/c9/57/97c9572de4b21d35326b970df1c91720.jpg",
     },
     {
       title: "🌅 Serene Chilling Atmosphere",
@@ -50,17 +50,17 @@ export default function Services() {
     {
       name: "🌿 Garden Cottage",
       desc: "Cozy, private cottages surrounded by greenery — perfect for couples and solo retreats.",
-      img: "https://images.unsplash.com/photo-1564013799919-ab600027ffc6?auto=format&fit=crop&w=1600&q=80",
+      img: "https://i.pinimg.com/1200x/56/cb/d9/56cbd94fa7cbb96e85a7c4097a9f35c3.jpg",
     },
     {
       name: "🏡 Luxury Suite",
       desc: "Spacious suites featuring premium interiors, garden views, and modern comfort.",
-      img: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1600&q=80",
+      img: "https://i.pinimg.com/1200x/13/56/c3/1356c3bdbe3375df3ba9a9a144bd14bb.jpg",
     },
     {
       name: "🌸 Garden View Room",
       desc: "Wake up to breathtaking garden views and the sounds of nature all around you.",
-      img: "https://images.unsplash.com/photo-1505691938895-1758d7feb511?auto=format&fit=crop&w=1600&q=80",
+      img: "https://i.pinimg.com/736x/af/5e/ca/af5ecaeceec394b10295c22e2b3af1e3.jpg",
     },
   ];
 
@@ -71,7 +71,7 @@ export default function Services() {
         className="relative h-[50vh] flex items-center justify-center bg-cover bg-center"
         style={{
           backgroundImage:
-            "url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1600&q=80')",
+            "url('https://scontent.fnbo8-1.fna.fbcdn.net/v/t39.30808-6/482225073_970415305225189_4127432891733866141_n.jpg?_nc_cat=102&ccb=1-7&_nc_sid=cc71e4&_nc_ohc=xUY4J0L55hAQ7kNvwG2TJft&_nc_oc=AdnFPH7ODNQuLS7CrrxXkKo6o_F7gP62c811CoRqHeq5KTP9aMaR3WDL-F5yRXRX-XY&_nc_zt=23&_nc_ht=scontent.fnbo8-1.fna&_nc_gid=MyZatAGH1e7yER-0PCgexA&oh=00_AfcCzJY7FgX2dNKEpF0hmqCxgbE_WhO5B8c68kTsJaHd7Q&oe=68EB3E00')",
         }}
       >
         <div className="absolute inset-0 bg-black bg-opacity-50"></div>

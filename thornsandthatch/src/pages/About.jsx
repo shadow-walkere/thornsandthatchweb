@@ -179,17 +179,20 @@ export default function About() {
               {
                 name: "Zachary Olaka",
                 role: "Founder",
-                image: "/assets/team1.jpg",
+                image:
+                  "https://scontent.fnbo8-1.fna.fbcdn.net/v/t39.30808-6/459826675_2460844710771768_5164823521993321831_n.jpg?stp=c0.53.480.480a_dst-jpg_s480x480_tt6&_nc_cat=104&ccb=1-7&_nc_sid=6ee11a&_nc_ohc=jg-yCahzvx0Q7kNvwGiqj24&_nc_oc=AdmgqqHBfQ5fEXeWtPACbcTwoMvn2iRYw7GD8ciTtLbehGvCSba4w4B_lVjWDNAlkYk&_nc_zt=23&_nc_ht=scontent.fnbo8-1.fna&_nc_gid=ndt3KOiRE7uN2-UtwK4e-g&oh=00_AfdJd16sm5qKcCMwX_iY6qHRqH_FHEGinu4zBY6PVagyFg&oe=68EB136C",
               },
               {
                 name: "Gentrix Mbalwe",
                 role: "Founder",
-                image: "/assets/team2.jpg",
+                image:
+                  "https://scontent.fnbo8-1.fna.fbcdn.net/v/t1.6435-9/118374181_113916187098266_7038813650952012574_n.jpg?stp=dst-jpg_p526x296_tt6&_nc_cat=110&ccb=1-7&_nc_sid=6ee11a&_nc_ohc=caVJoafo1QUQ7kNvwGQI-N3&_nc_oc=AdnMmVQ3Flz_tAso4zQxrGlj6btHFTNuv2-jvE0oUV8cQBND2zNlqClCg49R21217DI&_nc_zt=23&_nc_ht=scontent.fnbo8-1.fna&_nc_gid=mxpW4sALqpUA59uX-NPaOQ&oh=00_AfdVedyRPbla155UmqOZ0ieQOiNurkr-40vH9HepRO0Fqg&oe=690CE656",
               },
               {
                 name: "Erick Olaka",
                 role: "Event Planner",
-                image: "/assets/team3.jpg",
+                image:
+                  "https://scontent.fnbo8-1.fna.fbcdn.net/v/t1.6435-9/83246050_1055788811442086_3964142895950200832_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=6ee11a&_nc_ohc=VJMHAuig5zgQ7kNvwF4CSbx&_nc_oc=AdnEx6oS46X-q5sIumboaTSedsrTYLWg2yTqV1ea0-WRLYnZCbolY4b2NlmqXkQqCq4&_nc_zt=23&_nc_ht=scontent.fnbo8-1.fna&_nc_gid=TMflQbGA5IYTBfPaos9uQQ&oh=00_AfeaAtproNd7TOvX4ZX6MkHmoWJBeEF9TC7iWI3FD4DKSw&oe=690CCB2D",
               },
             ].map((member, idx) => (
               <motion.div
