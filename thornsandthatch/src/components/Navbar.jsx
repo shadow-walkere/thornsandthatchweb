@@ -13,6 +13,12 @@ export default function Header() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  // Scroll to top on navigation (desktop or mobile)
+  const handleNavClick = (closeMenu = false) => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+    if (closeMenu) setIsOpen(false);
+  };
+
   return (
     <motion.header
       initial={{ opacity: 0, y: -20 }}
@@ -25,7 +31,7 @@ export default function Header() {
       }`}
     >
       <div className="max-w-7xl mx-auto flex justify-between items-center px-6 md:px-10 py-3 md:py-4">
-        {/* Logo + Text */}
+        {/* 🌿 Logo Section */}
         <motion.div
           initial={{ opacity: 0, x: -25 }}
           animate={{ opacity: 1, x: 0 }}
@@ -33,6 +39,7 @@ export default function Header() {
         >
           <Link
             to="/"
+            onClick={() => handleNavClick(true)}
             className="flex items-center space-x-3 group hover:scale-[1.02] transition-transform duration-300"
           >
             <motion.img
@@ -58,7 +65,7 @@ export default function Header() {
           </Link>
         </motion.div>
 
-        {/* Desktop Nav */}
+        {/* 🌼 Desktop Navigation */}
         <nav className="hidden md:flex space-x-8 text-[15px] font-medium">
           {[
             ["Home", "/"],
@@ -71,6 +78,7 @@ export default function Header() {
             <motion.div key={label} whileHover={{ scale: 1.1 }}>
               <Link
                 to={path}
+                onClick={() => handleNavClick(false)}
                 className="relative text-gray-700 hover:text-amber-800 transition-all group"
               >
                 {label}
@@ -80,7 +88,7 @@ export default function Header() {
           ))}
         </nav>
 
-        {/* Social Icons */}
+        {/* 🌸 Social Icons (Desktop) */}
         <div className="hidden md:flex items-center space-x-4">
           {[
             ["https://facebook.com/thornsandthatch", <Facebook size={18} />],
@@ -99,7 +107,7 @@ export default function Header() {
           ))}
         </div>
 
-        {/* Mobile Menu Button */}
+        {/* 🍔 Mobile Menu Button */}
         <button
           className="md:hidden text-gray-700"
           onClick={() => setIsOpen(!isOpen)}
@@ -108,7 +116,7 @@ export default function Header() {
         </button>
       </div>
 
-      {/* Mobile Menu */}
+      {/* 📱 Mobile Menu */}
       <AnimatePresence>
         {isOpen && (
           <motion.div
@@ -130,7 +138,7 @@ export default function Header() {
                 <Link
                   key={label}
                   to={path}
-                  onClick={() => setIsOpen(false)}
+                  onClick={() => handleNavClick(true)} // closes menu + scrolls top
                   className="hover:text-amber-700 text-lg tracking-wide"
                 >
                   {label}

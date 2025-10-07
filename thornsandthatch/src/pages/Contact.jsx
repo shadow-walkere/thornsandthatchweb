@@ -1,7 +1,7 @@
 import { useRef, useState } from "react";
 import { motion } from "framer-motion";
 import emailjs from "emailjs-com";
-import { MapPin, Phone, Mail, MessageCircle } from "lucide-react";
+import { MapPin, Phone, Mail, MessageCircle, Clock } from "lucide-react";
 
 export default function Contact() {
   const formRef = useRef();
@@ -30,87 +30,110 @@ export default function Contact() {
   };
 
   return (
-    <div className="relative bg-gradient-to-b from-amber-50 to-white">
-      {/* Hero Banner */}
+    <div className="relative bg-gradient-to-b from-amber-50 via-white to-amber-100/40">
+      {/* 🌿 Hero Section */}
       <section
-        className="relative h-[50vh] flex items-center justify-center bg-cover bg-center"
+        className="relative h-[55vh] flex items-center justify-center bg-cover bg-center"
         style={{
           backgroundImage:
-            "url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1600&q=80')",
+            "url('https://cdn.pixabay.com/photo/2018/05/11/08/52/garden-3387979_1280.jpg')",
         }}
       >
-        <div className="absolute inset-0 bg-black bg-opacity-50"></div>
+        <div className="absolute inset-0 bg-black/50"></div>
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1 }}
-          className="relative z-10 text-center text-white"
+          className="relative z-10 text-center text-white px-6"
         >
-          <h1 className="text-4xl md:text-5xl font-bold mb-3">
-            Contact Thorns & Thatch Gardens
+          <h1 className="text-4xl md:text-6xl font-extrabold tracking-wide drop-shadow-lg mb-4">
+            Get in Touch
           </h1>
-          <p className="text-lg opacity-90">
-            We’d love to bring your ideas to life — get in touch today.
+          <p className="text-lg text-amber-200 max-w-2xl mx-auto">
+            Let’s bring your dream event to life at Thorns & Thatch Gardens
           </p>
         </motion.div>
       </section>
 
-      {/* Contact Section */}
+      {/* 🕰️ Info Bar */}
+      <motion.section
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 0.3, duration: 0.8 }}
+        className="bg-amber-700 text-white flex flex-wrap justify-center items-center gap-8 py-6 px-4 text-center"
+      >
+        <div className="flex items-center gap-3">
+          <MapPin className="w-5 h-5" />
+          <span>Nambale, Busia County, Kenya</span>
+        </div>
+        <div className="flex items-center gap-3">
+          <Phone className="w-5 h-5" />
+          <span>+254 722 984 568</span>
+        </div>
+        <div className="flex items-center gap-3">
+          <Mail className="w-5 h-5" />
+          <span>info@thornsandthatch.co.ke</span>
+        </div>
+        <div className="flex items-center gap-3">
+          <Clock className="w-5 h-5" />
+          <span>Open daily: 6:00 AM – 10:00 PM</span>
+        </div>
+      </motion.section>
+
+      {/* 🌸 Main Contact Section */}
       <section className="px-8 py-20 max-w-7xl mx-auto">
         <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
           className="grid md:grid-cols-2 gap-12"
         >
-          {/* Contact Form */}
-          <div className="bg-white p-8 rounded-2xl shadow-lg border border-amber-100">
-            <h2 className="text-2xl font-light text-amber-800 mb-6">
+          {/* ✉️ Contact Form */}
+          <motion.div
+            whileHover={{ scale: 1.01 }}
+            transition={{ duration: 0.3 }}
+            className="relative bg-white/60 backdrop-blur-lg p-8 rounded-3xl shadow-xl border border-amber-100"
+          >
+            <div className="absolute -top-5 -left-5 w-10 h-10 bg-amber-700 rounded-full blur-lg opacity-40"></div>
+            <h2 className="text-2xl font-semibold text-amber-800 mb-6 flex items-center gap-2">
               Send Us a Message
             </h2>
-            <form ref={formRef} onSubmit={sendEmail} className="space-y-6">
-              <div className="relative">
-                <input
-                  type="text"
-                  name="name"
-                  required
-                  className="peer w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-amber-600 placeholder-transparent"
-                  placeholder="Your Name"
-                />
-                <label className="absolute left-4 top-3 text-gray-500 text-sm transition-all peer-placeholder-shown:top-3.5 peer-placeholder-shown:text-gray-400 peer-placeholder-shown:text-base peer-focus:top-0 peer-focus:text-sm peer-focus:text-amber-700 bg-white px-1">
-                  Your Name
-                </label>
-              </div>
 
-              <div className="relative">
-                <input
-                  type="email"
-                  name="email"
-                  required
-                  className="peer w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-amber-600 placeholder-transparent"
-                  placeholder="Your Email"
-                />
-                <label className="absolute left-4 top-3 text-gray-500 text-sm transition-all peer-placeholder-shown:top-3.5 peer-placeholder-shown:text-gray-400 peer-placeholder-shown:text-base peer-focus:top-0 peer-focus:text-sm peer-focus:text-amber-700 bg-white px-1">
-                  Your Email
-                </label>
-              </div>
+            <form ref={formRef} onSubmit={sendEmail} className="space-y-6">
+              {["name", "email"].map((field, i) => (
+                <div className="relative" key={i}>
+                  <input
+                    type={field === "email" ? "email" : "text"}
+                    name={field}
+                    required
+                    className="peer w-full px-4 py-3 border border-gray-300 rounded-xl bg-white/80 focus:outline-none focus:ring-2 focus:ring-amber-600 placeholder-transparent"
+                    placeholder={`Your ${field === "name" ? "Name" : "Email"}`}
+                  />
+                  <label className="absolute left-4 top-3 text-gray-500 text-sm transition-all peer-placeholder-shown:top-3.5 peer-placeholder-shown:text-gray-400 peer-placeholder-shown:text-base peer-focus:top-0 peer-focus:text-sm peer-focus:text-amber-700 bg-white/70 px-1">
+                    {field === "name" ? "Your Name" : "Your Email"}
+                  </label>
+                </div>
+              ))}
 
               <div className="relative">
                 <textarea
                   rows="5"
                   name="message"
                   required
-                  className="peer w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-amber-600 placeholder-transparent"
+                  className="peer w-full px-4 py-3 border border-gray-300 rounded-xl bg-white/80 focus:outline-none focus:ring-2 focus:ring-amber-600 placeholder-transparent"
                   placeholder="Your Message"
                 ></textarea>
-                <label className="absolute left-4 top-3 text-gray-500 text-sm transition-all peer-placeholder-shown:top-3.5 peer-placeholder-shown:text-gray-400 peer-placeholder-shown:text-base peer-focus:top-0 peer-focus:text-sm peer-focus:text-amber-700 bg-white px-1">
+                <label className="absolute left-4 top-3 text-gray-500 text-sm transition-all peer-placeholder-shown:top-3.5 peer-placeholder-shown:text-gray-400 peer-placeholder-shown:text-base peer-focus:top-0 peer-focus:text-sm peer-focus:text-amber-700 bg-white/70 px-1">
                   Your Message
                 </label>
               </div>
 
               <motion.button
-                whileHover={{ scale: 1.05, boxShadow: "0px 0px 10px #92400e" }}
+                whileHover={{
+                  scale: 1.05,
+                  boxShadow: "0px 0px 15px #92400e",
+                }}
                 whileTap={{ scale: 0.95 }}
                 type="submit"
                 className="w-full rounded-full bg-amber-700 hover:bg-amber-800 text-white font-medium px-6 py-3 transition"
@@ -118,43 +141,51 @@ export default function Contact() {
                 Send Message
               </motion.button>
             </form>
+
             {status && (
               <p className="mt-4 text-sm text-center text-gray-700">{status}</p>
             )}
-          </div>
+          </motion.div>
 
-          {/* Contact Info + Map */}
-          <div className="flex flex-col justify-between">
+          {/* 🗺️ Contact Info + Map */}
+          <motion.div
+            initial={{ opacity: 0, x: 40 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.7 }}
+            viewport={{ once: true }}
+            className="flex flex-col justify-between"
+          >
             <div>
-              <h2 className="text-2xl font-light text-amber-800 mb-6">
-                Get in Touch
+              <h2 className="text-2xl font-semibold text-amber-800 mb-6">
+                Visit or Call Us
               </h2>
-              <p className="text-gray-600 mb-8">
-                Whether it’s a wedding, picnic, or corporate event, our
-                dedicated team in Nambale, Busia will help you create
-                unforgettable memories in a serene natural paradise.
+              <p className="text-gray-700 mb-8 leading-relaxed">
+                From weddings to weekend getaways,{" "}
+                <span className="font-medium text-amber-700">
+                  Thorns & Thatch Gardens
+                </span>{" "}
+                is a sanctuary for love, laughter, and unforgettable memories in
+                the heart of Busia County.
               </p>
 
               <ul className="space-y-4 text-gray-700">
-                <li className="flex items-center space-x-3">
+                <li className="flex items-center gap-3">
                   <MapPin className="w-5 h-5 text-amber-700" />
-                  <span>
-                    Thorns & Thatch Gardens, Nambale, Busia County, Kenya
-                  </span>
+                  <span>Nambale, Busia County, Kenya</span>
                 </li>
-                <li className="flex items-center space-x-3">
+                <li className="flex items-center gap-3">
                   <Phone className="w-5 h-5 text-amber-700" />
-                  <span>+254 712 345 678</span>
+                  <span>+254 722 984 568</span>
                 </li>
-                <li className="flex items-center space-x-3">
+                <li className="flex items-center gap-3">
                   <Mail className="w-5 h-5 text-amber-700" />
-                  <span>janexwandera0@gmail.com</span>
+                  <span>info@thornsandthatch.co.ke</span>
                 </li>
               </ul>
             </div>
 
-            {/* Map */}
-            <div className="mt-10 w-full h-64 md:h-80 relative rounded-2xl overflow-hidden shadow-md border border-amber-100 group">
+            {/* Map Embed */}
+            <div className="mt-10 w-full h-64 md:h-80 relative rounded-2xl overflow-hidden shadow-lg border border-amber-200 group">
               <iframe
                 title="Thorns and Thatch Gardens Location"
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d63515.69666115301!2d34.2135!3d0.4592!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x177f94ac69f1b1d3%3A0x1bba06a244dd0c53!2sNambale%2C%20Busia%20County%2C%20Kenya!5e0!3m2!1sen!2ske!4v1728016451123!5m2!1sen!2ske"
@@ -167,10 +198,8 @@ export default function Contact() {
               ></iframe>
 
               <motion.div
-                initial={{ opacity: 0 }}
                 whileHover={{ opacity: 1 }}
-                transition={{ duration: 0.3 }}
-                className="absolute inset-0 bg-black/50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition"
+                className="absolute inset-0 bg-black/50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all"
               >
                 <a
                   href="https://maps.app.goo.gl/SZUMo6UF8qPKFkpE6"
@@ -182,24 +211,19 @@ export default function Contact() {
                 </a>
               </motion.div>
             </div>
-          </div>
+          </motion.div>
         </motion.div>
       </section>
 
-      {/* 🟢 Floating WhatsApp Button */}
+      {/* 💬 Floating WhatsApp Button */}
       <motion.a
-        href="https://wa.me/254743072126?text=Hello%20Thorns%20%26%20Thatch%20Gardens!%20I%20would%20like%20to%20make%20an%20inquiry."
+        href="https://wa.me/254722984568?text=Hello%20Thorns%20%26%20Thatch%20Gardens!%20I%20would%20like%20to%20make%20an%20inquiry."
         target="_blank"
         rel="noopener noreferrer"
         className="fixed bottom-6 right-6 bg-green-500 text-white rounded-full shadow-lg p-4 z-50 flex items-center justify-center"
         whileHover={{ scale: 1.1 }}
-        animate={{
-          boxShadow: ["0 0 0px #22c55e", "0 0 15px #22c55e", "0 0 0px #22c55e"],
-        }}
-        transition={{
-          repeat: Infinity,
-          duration: 2,
-        }}
+        animate={{ scale: [1, 1.1, 1], opacity: [1, 0.8, 1] }}
+        transition={{ repeat: Infinity, duration: 2 }}
         aria-label="Chat on WhatsApp"
       >
         <MessageCircle className="w-7 h-7" />

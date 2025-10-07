@@ -1,137 +1,134 @@
-import { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { ChevronLeft, ChevronRight, MessageCircle } from "lucide-react";
-
-const images = [
-  "https://scontent.fnbo8-1.fna.fbcdn.net/v/t1.6435-9/118567488_180181933624006_4612463066209119452_n.jpg?_nc_cat=107&ccb=1-7&_nc_sid=833d8c&_nc_ohc=3w5b1zyId-wQ7kNvwHFEA7I&_nc_oc=AdmVFNdxzQUHQ_r_rNgmn0xozgDqz9ACPcruPbsSBg37dXRYTXRWeXcwo-5gzrOyqfA&_nc_zt=23&_nc_ht=scontent.fnbo8-1.fna&_nc_gid=Jy2h6omEGitjr3G0yyTh4A&oh=00_AfdKK8l4dd-CdBYU3CF_u8kcX1JMBmoTsdIy6riiU3yGYw&oe=690725B4",
-  "https://scontent.fnbo8-1.fna.fbcdn.net/v/t39.30808-6/387785841_821757003293355_4539190100927213451_n.jpg?_nc_cat=110&ccb=1-7&_nc_sid=6ee11a&_nc_ohc=1JGEF4DL_zUQ7kNvwHn0_L6&_nc_oc=AdkLBAtEMaffq91bxXCZfOrc9YqrOG6JVerZU-kdMY1iWB9d6E8Lfp6KV3CZs8kg7NQ&_nc_zt=23&_nc_ht=scontent.fnbo8-1.fna&_nc_gid=zHe5yI9GHvmzKpu-PrKjYg&oh=00_AfcDv4CzK7GgFCQvbfr4X6-Usq4VppJxSexDfRE7VmLvZQ&oe=68E55F1E",
-  "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1600&q=80",
-];
+"use client";
+import { motion } from "framer-motion";
+import { ChevronDown } from "lucide-react";
 
 export default function Hero() {
-  const [index, setIndex] = useState(0);
-  const [touchStart, setTouchStart] = useState(null);
-
-  // Auto-slide every 5s
-  useEffect(() => {
-    const timer = setInterval(() => {
-      nextSlide();
-    }, 5000);
-    return () => clearInterval(timer);
-  }, []);
-
-  const nextSlide = () => setIndex((prev) => (prev + 1) % images.length);
-  const prevSlide = () =>
-    setIndex((prev) => (prev - 1 + images.length) % images.length);
-
-  // Swipe detection for mobile
-  const handleTouchStart = (e) => setTouchStart(e.touches[0].clientX);
-  const handleTouchEnd = (e) => {
-    if (touchStart === null) return;
-    const touchEnd = e.changedTouches[0].clientX;
-    const diff = touchStart - touchEnd;
-
-    if (diff > 50) nextSlide();
-    else if (diff < -50) prevSlide();
-    setTouchStart(null);
-  };
-
   return (
-    <section
-      className="relative h-[40vh] md:h-[70vh] overflow-hidden flex items-center justify-center"
-      onTouchStart={handleTouchStart}
-      onTouchEnd={handleTouchEnd}
-    >
-      {/* Background Images */}
-      <AnimatePresence>
-        <motion.img
-          key={index}
-          src={images[index]}
+    <section className="relative h-[95vh] md:h-screen flex items-center justify-center text-center overflow-hidden font-serif">
+      {/* 🌅 Background Image with soft parallax and overlay */}
+      <motion.div
+        initial={{ scale: 1.2, opacity: 0 }}
+        animate={{ scale: 1, opacity: 1 }}
+        transition={{ duration: 2, ease: "easeOut" }}
+        className="absolute inset-0"
+      >
+        <img
+          src="/assets/house2.jpg"
           alt="Thorns & Thatch Gardens"
-          className="absolute inset-0 w-full h-full object-cover"
-          initial={{ opacity: 0, scale: 1.05 }}
-          animate={{ opacity: 1, scale: 1 }}
-          exit={{ opacity: 0, scale: 1.05 }}
-          transition={{ duration: 1 }}
+          className="w-full h-full object-cover object-center brightness-[0.85]"
         />
-      </AnimatePresence>
+        <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/50 to-black/70"></div>
+      </motion.div>
 
-      {/* Overlay */}
-      <div className="absolute inset-0 bg-black/50"></div>
+      {/* 🌤️ Ambient Glow Overlay */}
+      <motion.div
+        animate={{
+          opacity: [0.2, 0.5, 0.2],
+          scale: [1, 1.05, 1],
+        }}
+        transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
+        className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.25),transparent_70%)]"
+      />
 
-      {/* Hero Text */}
-      <div className="relative z-10 text-center text-white px-6">
-        <motion.h1
-          className="text-2xl md:text-5xl font-bold mb-4 drop-shadow-lg"
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-        >
-          Welcome to Thorns & Thatch Gardens
-        </motion.h1>
+      {/* 🌾 Hero Text */}
+      <motion.div
+        initial={{ opacity: 0, y: 60 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 1.2, ease: "easeOut" }}
+        className="relative z-10 px-6 sm:px-10 max-w-4xl mx-auto text-white"
+      >
+        <h1 className="text-5xl sm:text-6xl md:text-8xl font-extrabold tracking-tight mb-6 drop-shadow-[0_6px_8px_rgba(0,0,0,0.4)]">
+          <span className="bg-clip-text text-transparent bg-gradient-to-r from-amber-200 via-yellow-400 to-amber-600 animate-gradient-x">
+            Thorns & Thatch Gardens
+          </span>
+        </h1>
+
         <motion.p
-          className="text-sm md:text-lg max-w-2xl mx-auto mb-6 drop-shadow-md"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ duration: 1, delay: 0.5 }}
+          transition={{ delay: 0.6, duration: 1 }}
+          className="text-base sm:text-lg md:text-xl text-gray-100 leading-relaxed mb-10 italic"
         >
-          Where nature, elegance, and memories meet.
+          Where every celebration is wrapped in nature’s quiet elegance and
+          timeless charm.
         </motion.p>
-        <motion.a
-          href="/services"
-          className="inline-block bg-amber-700 hover:bg-amber-800 text-white font-medium px-6 py-3 rounded-full transition"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 1 }}
-          whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 0.95 }}
+
+        <motion.div
+          className="flex flex-col sm:flex-row gap-4 justify-center"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.8 }}
         >
-          Discover More
-        </motion.a>
-      </div>
+          <motion.a
+            href="/contact"
+            whileHover={{
+              scale: 1.08,
+              backgroundColor: "#fef3c7",
+              color: "#7b6650",
+            }}
+            whileTap={{ scale: 0.96 }}
+            className="bg-white text-[#7b6650] font-semibold px-10 py-4 rounded-full shadow-lg hover:shadow-2xl transition-all text-base sm:text-lg"
+          >
+            Plan Your Visit
+          </motion.a>
 
-      {/* Navigation Arrows */}
-      <button
-        onClick={prevSlide}
-        className="hidden md:flex absolute left-6 top-1/2 transform -translate-y-1/2 bg-black/40 hover:bg-black/60 text-white p-3 rounded-full z-10"
-      >
-        <ChevronLeft size={28} />
-      </button>
-      <button
-        onClick={nextSlide}
-        className="hidden md:flex absolute right-6 top-1/2 transform -translate-y-1/2 bg-black/40 hover:bg-black/60 text-white p-3 rounded-full z-10"
-      >
-        <ChevronRight size={28} />
-      </button>
+          <motion.a
+            href="/gallery"
+            whileHover={{ scale: 1.08 }}
+            whileTap={{ scale: 0.96 }}
+            className="border border-white/80 text-white font-medium px-10 py-4 rounded-full hover:bg-white/10 transition-all text-base sm:text-lg"
+          >
+            View Gallery
+          </motion.a>
+        </motion.div>
+      </motion.div>
 
-      {/* Dots Navigation */}
-      <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-3 z-10">
-        {images.map((_, i) => (
-          <button
-            key={i}
-            onClick={() => setIndex(i)}
-            className={`w-3 h-3 rounded-full transition ${
-              i === index ? "bg-amber-500 scale-110" : "bg-white/50"
-            }`}
-          />
-        ))}
-      </div>
+      {/* ✨ Floating Light Orbs */}
+      <motion.div
+        className="absolute top-[20%] left-[15%] w-28 h-28 bg-amber-200/30 rounded-full blur-3xl"
+        animate={{ y: [0, 20, 0], opacity: [0.3, 0.6, 0.3] }}
+        transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+      />
+      <motion.div
+        className="absolute bottom-[15%] right-[10%] w-40 h-40 bg-yellow-300/20 rounded-full blur-3xl"
+        animate={{ y: [0, -25, 0], opacity: [0.4, 0.7, 0.4] }}
+        transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
+      />
 
-      {/* 🟢 Floating WhatsApp Button */}
-      <motion.a
-        href="https://wa.me/+254743072126?text=Hi%20there!%20I'd%20love%20to%20know%20more%20about%20Thorns%20%26%20Thatch%20Gardens."
-        target="_blank"
-        rel="noopener noreferrer"
-        className="fixed bottom-6 right-6 z-50 bg-green-500 hover:bg-green-600 text-white rounded-full p-4 shadow-lg flex items-center justify-center"
-        initial={{ opacity: 0, scale: 0 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ delay: 1, duration: 0.6 }}
-        whileHover={{ scale: 1.1 }}
-        whileTap={{ scale: 0.95 }}
-        title="Chat with us on WhatsApp"
+      {/* 🌸 Animated Petal Particles (Subtle) */}
+      {[...Array(6)].map((_, i) => (
+        <motion.div
+          key={i}
+          className="absolute w-3 h-3 bg-pink-200/50 rounded-full blur-sm"
+          animate={{
+            x: [Math.random() * 200 - 100, Math.random() * 200 - 100],
+            y: [0, 200],
+            opacity: [1, 0],
+          }}
+          transition={{
+            duration: 6 + Math.random() * 4,
+            repeat: Infinity,
+            delay: i * 1.5,
+          }}
+          style={{
+            top: `${Math.random() * 60 + 10}%`,
+            left: `${Math.random() * 80 + 10}%`,
+          }}
+        />
+      ))}
+
+      {/* ⬇️ Scroll Hint */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 0.8 }}
+        transition={{ delay: 2, duration: 1.5 }}
+        className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center cursor-pointer"
       >
-        <MessageCircle size={30} />
-      </motion.a>
+        <p className="text-xs sm:text-sm text-gray-200 mb-1 tracking-widest uppercase">
+          Scroll Down
+        </p>
+        <ChevronDown className="animate-bounce text-amber-300" size={30} />
+      </motion.div>
     </section>
   );
 }

@@ -1,49 +1,92 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import { motion, AnimatePresence } from "framer-motion";
 
+// 🌿 Blog Data
 const blogPosts = [
   {
     id: 1,
-    title: "A Blooming Season at Thorns & Thatch",
+    title: "Enchanted Garden Weddings",
     excerpt:
-      "Discover the vibrant colors and fresh beginnings that our gardens bring each spring.",
+      "Step into a world of romance surrounded by flowers and candlelight. Discover how we turn garden spaces into dreamy wedding venues.",
     date: "September 25, 2025",
-    image:
-      "https://cdn.pixabay.com/photo/2016/11/21/15/58/wedding-1846114_640.jpg",
-    category: "Events",
-  },
-  {
-    id: 2,
-    title: "Planning the Perfect Garden Wedding",
-    excerpt:
-      "Tips and inspiration for creating unforgettable moments surrounded by nature.",
-    date: "September 10, 2025",
-    image:
-      "https://scontent.fnbo8-1.fna.fbcdn.net/v/t39.30808-6/469838363_1119142069727983_2871413534980124997_n.jpg?_nc_cat=103&ccb=1-7&_nc_sid=833d8c&_nc_ohc=6t35XHax1FUQ7kNvwFJFfkk&_nc_oc=Admg3CCPNpyCD88scjWb8piUXlexCTrOg8U1GixSCKrQ2O7dwtc9602rERoibqHTCEM&_nc_zt=23&_nc_ht=scontent.fnbo8-1.fna&_nc_gid=0f0UejWT68u9-H8QYwWSBw&oh=00_AfenO3gO9qTFi9eOJr61RHvOGHEyz1mXTUXtUU8ikrQ6kQ&oe=68E6C747",
+    image: "/assets/wedding.jpg",
     category: "Weddings",
   },
   {
-    id: 3,
-    title: "Behind the Scenes: Our Gardeners at Work",
+    id: 2,
+    title: "A Taste of Nature: Food & Drinks at Thorns & Thatch",
     excerpt:
-      "Meet the dedicated team that nurtures every corner of Thorns & Thatch Gardens.",
-    date: "August 28, 2025",
-    image: "/blog/b3.jpg",
-    category: "Garden Care",
+      "From freshly brewed garden teas to chef-inspired farm-to-table meals, our menu is a tribute to nature’s flavors.",
+    date: "September 10, 2025",
+    image: "/assets/food.jpg",
+    category: "Food & Drinks",
   },
-  // ➡️ Add more posts here to test pagination
+  {
+    id: 3,
+    title: "Comfort in the Garden: Stay at Our Cottage Suites",
+    excerpt:
+      "Relax in cozy accommodation surrounded by lush gardens, gentle breezes, and the songs of nature.",
+    date: "August 28, 2025",
+    image: "/assets/accommodation.jpg",
+    category: "Accommodation",
+  },
+  {
+    id: 4,
+    title: "Team Building in Bloom",
+    excerpt:
+      "From group challenges to creative outdoor workshops, our gardens provide the perfect setting for team bonding and growth.",
+    date: "August 10, 2025",
+    image: "/assets/teambuilding.jpg",
+    category: "Team Building",
+  },
+  {
+    id: 5,
+    title: "Picnics by the Pond",
+    excerpt:
+      "Unwind with a classic picnic surrounded by nature’s charm — wicker baskets, cozy blankets, and tranquil views included.",
+    date: "July 24, 2025",
+    image: "/assets/picnic.jpg",
+    category: "Picnics",
+  },
+  {
+    id: 6,
+    title: "Events that Bloom",
+    excerpt:
+      "Whether it's a birthday, baby shower, or corporate event, our spaces adapt to create magical experiences for every occasion.",
+    date: "July 10, 2025",
+    image: "/assets/events.jpg",
+    category: "Events",
+  },
 ];
 
-const categories = ["All", "Events", "Weddings", "Garden Care"];
+const categories = [
+  "All",
+  "Weddings",
+  "Food & Drinks",
+  "Accommodation",
+  "Team Building",
+  "Picnics",
+  "Events",
+];
 
 export default function Blog() {
   const [selectedCategory, setSelectedCategory] = useState("All");
   const [searchTerm, setSearchTerm] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
+  const [featuredIndex, setFeaturedIndex] = useState(0);
 
   const postsPerPage = 6;
 
-  // Filter posts
+  // 🌸 Auto-Rotate Featured Post Every 6 Seconds
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setFeaturedIndex((prev) => (prev + 1) % blogPosts.length);
+    }, 6000);
+    return () => clearInterval(interval);
+  }, []);
+
+  // Filtered + Paginated Posts
   const filteredPosts = blogPosts.filter((post) => {
     const matchesCategory =
       selectedCategory === "All" || post.category === selectedCategory;
@@ -53,7 +96,6 @@ export default function Blog() {
     return matchesCategory && matchesSearch;
   });
 
-  // Pagination logic
   const totalPages = Math.ceil(filteredPosts.length / postsPerPage);
   const startIndex = (currentPage - 1) * postsPerPage;
   const paginatedPosts = filteredPosts.slice(
@@ -68,37 +110,80 @@ export default function Blog() {
     }
   };
 
+  const featuredPost = blogPosts[featuredIndex];
+
   return (
-    <div>
-      {/* Hero Banner */}
-      <section
-        className="relative h-[40vh] flex items-center justify-center bg-cover bg-center"
-        style={{ backgroundImage: "url('/garden-view.jpg')" }}
-      >
-        <div className="absolute inset-0 bg-black bg-opacity-40"></div>
-        <div className="relative z-10 text-center text-white">
-          <h1 className="text-4xl md:text-5xl font-bold mb-2">Our Blog</h1>
-          <p className="text-lg">
-            Stories, updates, and inspiration from the garden
-          </p>
+    <div className="bg-[#FCF8F3] text-[#4a3c2a] font-serif">
+      {/* 🌼 Auto-Rotating Featured Story */}
+      <section className="relative mt-28 sm:mt-36 mb-20 px-4 sm:px-8 lg:px-10 max-w-7xl mx-auto">
+        <div className="relative rounded-3xl overflow-hidden shadow-2xl h-[360px] sm:h-[420px] lg:h-[480px]">
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={featuredPost.id}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 1.5 }}
+              className="absolute inset-0"
+            >
+              <img
+                src={featuredPost.image}
+                alt={featuredPost.title}
+                className="w-full h-full object-cover brightness-90"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/40 to-transparent flex items-end p-5 sm:p-10 lg:p-14">
+                <div className="text-white max-w-xl sm:max-w-2xl">
+                  <p className="text-xs sm:text-sm uppercase tracking-widest text-amber-300 mb-2">
+                    ✨ Featured Story
+                  </p>
+                  <h2 className="text-2xl sm:text-4xl font-light mb-3 leading-snug">
+                    {featuredPost.title}
+                  </h2>
+                  <p className="text-sm sm:text-base mb-6 text-gray-200">
+                    {featuredPost.excerpt}
+                  </p>
+                  <Link
+                    to={`/blog/${featuredPost.id}`}
+                    className="inline-block bg-[#a17c50] hover:bg-[#7b6650] px-5 sm:px-6 py-2.5 sm:py-3 rounded-full text-sm font-medium text-white shadow-md transition-all"
+                  >
+                    Read Full Story →
+                  </Link>
+                </div>
+              </div>
+            </motion.div>
+          </AnimatePresence>
+        </div>
+
+        {/* 🌾 Indicator Dots */}
+        <div className="flex justify-center mt-6 space-x-2">
+          {blogPosts.map((_, idx) => (
+            <button
+              key={idx}
+              onClick={() => setFeaturedIndex(idx)}
+              className={`w-3 h-3 rounded-full transition-all ${
+                idx === featuredIndex
+                  ? "bg-[#7b6650]"
+                  : "bg-[#d3c6b8] hover:bg-[#a17c50]"
+              }`}
+            />
+          ))}
         </div>
       </section>
 
-      {/* Filters + Search */}
-      <section className="px-8 py-8 max-w-7xl mx-auto flex flex-col md:flex-row md:items-center md:justify-between gap-4">
-        {/* Category Filter */}
-        <div className="flex flex-wrap gap-3">
+      {/* 🌿 Filters */}
+      <section className="px-4 sm:px-8 lg:px-10 py-10 max-w-7xl mx-auto flex flex-col md:flex-row md:items-center md:justify-between gap-5 border-b border-[#e5d7c8]">
+        <div className="flex flex-wrap gap-3 justify-center md:justify-start">
           {categories.map((cat) => (
             <button
               key={cat}
               onClick={() => {
                 setSelectedCategory(cat);
-                setCurrentPage(1); // reset to first page
+                setCurrentPage(1);
               }}
-              className={`px-4 py-2 rounded-full border text-sm font-medium transition ${
+              className={`px-5 py-2 rounded-full border text-sm font-medium transition-all ${
                 selectedCategory === cat
-                  ? "bg-amber-700 text-white border-amber-700"
-                  : "bg-white text-gray-700 border-gray-300 hover:bg-amber-50"
+                  ? "bg-[#7b6650] text-white border-[#7b6650]"
+                  : "bg-white text-[#5e4c3a] border-gray-300 hover:bg-[#f7efe5]"
               }`}
             >
               {cat}
@@ -106,7 +191,6 @@ export default function Blog() {
           ))}
         </div>
 
-        {/* Search Bar */}
         <div className="w-full md:w-64">
           <input
             type="text"
@@ -114,57 +198,72 @@ export default function Blog() {
             value={searchTerm}
             onChange={(e) => {
               setSearchTerm(e.target.value);
-              setCurrentPage(1); // reset to first page
+              setCurrentPage(1);
             }}
-            className="w-full px-4 py-2 border rounded-full focus:outline-none focus:ring-2 focus:ring-amber-600"
+            className="w-full px-4 py-2 border rounded-full focus:outline-none focus:ring-2 focus:ring-[#a17c50] text-[#4a3c2a]"
           />
         </div>
       </section>
 
-      {/* Blog Grid */}
-      <section className="px-8 pb-16 max-w-7xl mx-auto">
+      {/* 🌸 Blog Grid */}
+      <section className="px-4 sm:px-8 lg:px-10 pb-16 max-w-7xl mx-auto">
+        <h3 className="text-2xl sm:text-3xl text-center font-light mb-12 text-[#7b6650] tracking-wide">
+          Garden Highlights 🌸
+        </h3>
+
         {paginatedPosts.length > 0 ? (
-          <div className="grid md:grid-cols-3 gap-8">
-            {paginatedPosts.map((post) => (
-              <div
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
+            {paginatedPosts.map((post, index) => (
+              <motion.div
                 key={post.id}
-                className="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition"
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: index * 0.1 }}
+                viewport={{ once: true }}
+                className="bg-white rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all border border-[#e9dfd4] hover:-translate-y-2"
               >
-                <img
-                  src={post.image}
-                  alt={post.title}
-                  className="h-48 w-full object-cover"
-                />
-                <div className="p-6">
-                  <p className="text-sm text-gray-500 mb-2">{post.date}</p>
-                  <h2 className="text-xl font-semibold text-amber-800 mb-3">
-                    {post.title}
-                  </h2>
-                  <p className="text-gray-600 mb-4">{post.excerpt}</p>
-                  <span className="inline-block mb-4 text-xs font-semibold text-green-700 bg-green-100 px-3 py-1 rounded-full">
+                <div className="relative">
+                  <img
+                    src={post.image}
+                    alt={post.title}
+                    className="h-52 sm:h-56 lg:h-60 w-full object-cover hover:scale-105 transition-transform duration-700 ease-out"
+                  />
+                  <span className="absolute top-3 left-3 bg-[#7b6650]/90 text-white text-xs font-medium px-3 py-1 rounded-full">
                     {post.category}
                   </span>
+                </div>
+
+                <div className="p-6">
+                  <p className="text-xs text-gray-500 mb-2">{post.date}</p>
+                  <h2 className="text-lg sm:text-xl font-semibold text-[#7b6650] mb-3 leading-snug">
+                    {post.title}
+                  </h2>
+                  <p className="text-[#5e4c3a] mb-5 text-sm leading-relaxed">
+                    {post.excerpt}
+                  </p>
                   <Link
                     to={`/blog/${post.id}`}
-                    className="text-amber-700 hover:underline font-medium"
+                    className="text-[#a17c50] hover:text-[#7b6650] font-medium text-sm transition-all"
                   >
                     Read More →
                   </Link>
                 </div>
-              </div>
+              </motion.div>
             ))}
           </div>
         ) : (
-          <p className="text-center text-gray-600 mt-12">No posts found.</p>
+          <p className="text-center text-gray-500 mt-12 text-lg">
+            No posts found — try a different category or keyword 🌿
+          </p>
         )}
 
-        {/* Pagination Controls */}
+        {/* Pagination */}
         {totalPages > 1 && (
-          <div className="mt-12 flex justify-center items-center space-x-2">
+          <div className="mt-12 flex justify-center items-center space-x-2 flex-wrap">
             <button
               onClick={() => goToPage(currentPage - 1)}
               disabled={currentPage === 1}
-              className="px-4 py-2 rounded-md border text-sm font-medium bg-white text-gray-700 border-gray-300 hover:bg-amber-50 disabled:opacity-50"
+              className="px-4 py-2 rounded-md border text-sm font-medium bg-white text-gray-700 border-gray-300 hover:bg-[#f7efe5] disabled:opacity-50"
             >
               ← Previous
             </button>
@@ -174,8 +273,8 @@ export default function Blog() {
                 onClick={() => goToPage(i + 1)}
                 className={`px-4 py-2 rounded-md border text-sm font-medium ${
                   currentPage === i + 1
-                    ? "bg-amber-700 text-white border-amber-700"
-                    : "bg-white text-gray-700 border-gray-300 hover:bg-amber-50"
+                    ? "bg-[#7b6650] text-white border-[#7b6650]"
+                    : "bg-white text-[#5e4c3a] border-gray-300 hover:bg-[#f7efe5]"
                 }`}
               >
                 {i + 1}
@@ -184,7 +283,7 @@ export default function Blog() {
             <button
               onClick={() => goToPage(currentPage + 1)}
               disabled={currentPage === totalPages}
-              className="px-4 py-2 rounded-md border text-sm font-medium bg-white text-gray-700 border-gray-300 hover:bg-amber-50 disabled:opacity-50"
+              className="px-4 py-2 rounded-md border text-sm font-medium bg-white text-gray-700 border-gray-300 hover:bg-[#f7efe5] disabled:opacity-50"
             >
               Next →
             </button>

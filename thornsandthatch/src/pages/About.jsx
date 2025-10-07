@@ -1,120 +1,136 @@
+"use client";
 import { motion } from "framer-motion";
 
 export default function About() {
+  const fadeUp = (delay = 0) => ({
+    hidden: { opacity: 0, y: 40 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.9, delay, ease: "easeOut" },
+    },
+  });
+
   return (
-    <div>
-      {/* Hero Banner */}
-      <section
-        className="relative h-[60vh] flex items-center justify-center bg-cover bg-center"
-        style={{
-          backgroundImage:
-            "url('https://scontent.fnbo8-1.fna.fbcdn.net/v/t1.6435-9/118567488_180181933624006_4612463066209119452_n.jpg?...')",
-        }}
-      >
-        <div className="absolute inset-0 bg-black bg-opacity-50"></div>
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1 }}
-          className="relative z-10 text-center text-white px-4"
+    <div className="bg-[#FCF8F3] text-[#4a3c2a] font-serif overflow-hidden relative">
+      {/* 🌼 Decorative Curved Background */}
+      <div className="absolute top-0 left-0 w-full h-[200px] bg-[#f3ebe2] rounded-b-[50%]"></div>
+
+      {/* Header Section */}
+      <section className="pt-48 pb-16 text-center relative z-10">
+        <motion.h1
+          initial="hidden"
+          animate="visible"
+          variants={fadeUp(0.3)}
+          className="text-4xl md:text-5xl tracking-[0.3em] font-light text-[#7b6650]"
         >
-          <h1 className="text-5xl md:text-6xl font-extrabold mb-4">
-            About <span className="text-amber-400">& Us</span>
-          </h1>
-          <p className="text-lg md:text-xl max-w-2xl mx-auto leading-relaxed">
-            Our story, our passion, our gardens — where nature meets celebration
+          ABOUT US
+        </motion.h1>
+
+        {/* Floating petals animation */}
+        <motion.div
+          className="absolute left-[15%] top-[30%] w-6 h-6 bg-pink-200 rounded-full opacity-70 blur-[2px]"
+          animate={{ y: [0, -15, 0], x: [0, 5, 0], opacity: [0.3, 0.7, 0.3] }}
+          transition={{ duration: 6, repeat: Infinity }}
+        />
+        <motion.div
+          className="absolute right-[20%] top-[40%] w-8 h-8 bg-amber-200 rounded-full opacity-60 blur-[2px]"
+          animate={{ y: [0, -10, 0], opacity: [0.3, 0.6, 0.3] }}
+          transition={{ duration: 5, repeat: Infinity }}
+        />
+      </section>
+
+      {/* About Content Section */}
+      <section className="max-w-6xl mx-auto px-6 md:px-12 lg:px-20 grid md:grid-cols-2 gap-16 items-center pb-24">
+        {/* Left - Arched Image */}
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          variants={fadeUp(0.2)}
+          viewport={{ once: true }}
+          className="relative"
+        >
+          <div className="overflow-hidden rounded-t-[180px] shadow-lg border border-[#e9dfd4]">
+            <img
+              src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1600&q=80"
+              alt="Thorns & Thatch Gardens wedding setup"
+              className="w-full h-[600px] object-cover hover:scale-105 transition-transform duration-700 ease-out"
+            />
+          </div>
+        </motion.div>
+
+        {/* Right - Text */}
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          variants={fadeUp(0.4)}
+          viewport={{ once: true }}
+          className="space-y-6"
+        >
+          <h3 className="text-xl text-[#b2987d] uppercase tracking-[3px] font-semibold">
+            Thorns & Thatch Gardens
+          </h3>
+          <h2 className="text-3xl md:text-4xl font-light text-[#4a3c2a] leading-relaxed">
+            Wedding Ceremony & Reception Venue
+          </h2>
+
+          <p className="font-['Great_Vibes'] text-3xl text-[#a17c50]">
+            Welcome to Thorns & Thatch Gardens
+          </p>
+
+          <p className="text-[#5e4c3a] leading-relaxed text-lg">
+            Whether big or small, our gardens offer the perfect setting to host
+            your wedding and reception. Enjoy private access to our lush grounds
+            — adorned with floral pathways, tree-lined walkways, and elegant
+            water features — creating an unforgettable backdrop for your special
+            day.
+          </p>
+
+          <p className="text-[#5e4c3a] leading-relaxed text-lg">
+            From intimate ceremonies to grand celebrations under the stars,
+            every moment here blossoms into a timeless memory.
           </p>
         </motion.div>
       </section>
 
-      {/* Who We Are */}
-      <section className="px-8 py-20 max-w-6xl mx-auto text-center">
-        <motion.h2
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7 }}
+      {/* 🌿 Experience Section */}
+      <section className="max-w-6xl mx-auto px-6 md:px-12 lg:px-20 pb-28 grid md:grid-cols-2 gap-16 items-start">
+        {/* Left Text */}
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          variants={fadeUp(0.2)}
           viewport={{ once: true }}
-          className="text-4xl font-light text-amber-800 mb-6"
         >
-          Who We Are
-        </motion.h2>
-        <motion.p
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
-          viewport={{ once: true }}
-          className="text-gray-600 leading-relaxed max-w-3xl mx-auto text-lg"
-        >
-          At{" "}
-          <span className="font-semibold text-amber-700">
-            Thorns & Thatch Gardens
-          </span>
-          , we believe every celebration deserves a magical stage. Nestled in
-          lush greenery and kissed by gentle breezes, our gardens are more than
-          a venue — they are a **living canvas** for your most cherished
-          memories. From dreamy weddings and elegant corporate retreats to
-          intimate family gatherings, our spaces inspire joy, laughter, and
-          timeless moments.
-        </motion.p>
-      </section>
+          <h3 className="text-2xl font-semibold text-[#7b6650] mb-4">
+            With Over 10 Years of Experience
+          </h3>
+          <ul className="space-y-3 text-[#5e4c3a] text-lg">
+            <li>• Happy Clients are our first priority.</li>
+            <li>• We guarantee picture-perfect memories.</li>
+            <li>
+              • Our venue includes trees, water features, and open fields.
+            </li>
+            <li>
+              • Featured in numerous wedding shows and lifestyle programs.
+            </li>
+          </ul>
+        </motion.div>
 
-      {/* Mission & Vision */}
-      <section className="px-8 py-20 bg-amber-50">
-        <div className="grid md:grid-cols-2 gap-12 max-w-6xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, x: -40 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.7 }}
-            viewport={{ once: true }}
-          >
-            <h3 className="text-3xl font-semibold text-amber-800 mb-4">
-              🌿 Our Mission
-            </h3>
-            <p className="text-gray-600 leading-relaxed text-lg">
-              To craft unforgettable experiences by blending the elegance of
-              nature with thoughtful design. Every event at our gardens is more
-              than just a gathering — it’s a story written among flowers,
-              sunlight, and serenity.
-            </p>
-          </motion.div>
-          <motion.div
-            initial={{ opacity: 0, x: 40 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.7 }}
-            viewport={{ once: true }}
-          >
-            <h3 className="text-3xl font-semibold text-amber-800 mb-4">
-              ✨ Our Vision
-            </h3>
-            <p className="text-gray-600 leading-relaxed text-lg">
-              To be the region’s most beloved outdoor destination — where people
-              from near and far come not just to host events, but to feel
-              inspired, connected, and at peace in the embrace of nature.
-            </p>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Call to Action */}
-      <section className="px-8 py-20 text-center">
-        <motion.h3
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
+        {/* Right Image */}
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          variants={fadeUp(0.3)}
           viewport={{ once: true }}
-          className="text-3xl font-light text-amber-800 mb-6"
+          className="overflow-hidden rounded-3xl shadow-lg border border-[#e9dfd4]"
         >
-          Ready to make your story unforgettable at Thorns & Thatch Gardens?
-        </motion.h3>
-        <motion.a
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          transition={{ duration: 0.8, delay: 0.3 }}
-          href="/contact"
-          className="inline-block rounded-full bg-amber-700 hover:bg-amber-800 text-white px-8 py-4 text-lg font-medium shadow-md transition"
-        >
-          Get in Touch
-        </motion.a>
+          <img
+            src="/assets/accomodation.jpg"
+            alt="Garden Event Space"
+            className="w-full h-[400px] object-cover hover:scale-105 transition-transform duration-700 ease-out"
+          />
+        </motion.div>
       </section>
     </div>
   );
