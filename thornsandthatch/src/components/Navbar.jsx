@@ -43,7 +43,7 @@ export default function Header() {
             className="flex items-center space-x-3 group hover:scale-[1.02] transition-transform duration-300"
           >
             <motion.img
-              src="https://scontent.fnbo8-1.fna.fbcdn.net/v/t39.30808-6/387785841_821757003293355_4539190100927213451_n.jpg?_nc_cat=110&ccb=1-7&_nc_sid=6ee11a&_nc_ohc=1JGEF4DL_zUQ7kNvwHn0_L6&_nc_oc=AdkLBAtEMaffq91bxXCZfOrc9YqrOG6JVerZU-kdMY1iWB9d6E8Lfp6KV3CZs8kg7NQ&_nc_zt=23&_nc_ht=scontent.fnbo8-1.fna&_nc_gid=zHe5yI9GHvmzKpu-PrKjYg&oh=00_AfcDv4CzK7GgFCQvbfr4X6-Usq4VppJxSexDfRE7VmLvZQ&oe=68E55F1E"
+              src="/assets/logo1.jpg"
               alt="Thorns & Thatch Gardens Logo"
               className="h-16 w-auto rounded-2xl shadow-md border-2 border-amber-200"
               animate={{ y: [0, -2, 0] }}
