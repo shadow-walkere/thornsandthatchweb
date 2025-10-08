@@ -1,7 +1,7 @@
 import { useRef, useState } from "react";
 import { motion } from "framer-motion";
 import emailjs from "emailjs-com";
-import { MapPin, Phone, Mail, MessageCircle, Clock } from "lucide-react";
+import { MapPin, Phone, Mail, Clock } from "lucide-react";
 
 export default function Contact() {
   const formRef = useRef();
@@ -32,14 +32,14 @@ export default function Contact() {
   return (
     <div className="relative bg-gradient-to-b from-amber-50 via-white to-amber-100/40">
       {/* 🌿 Hero Section */}
-      <section
-        className="relative h-[55vh] flex items-center justify-center bg-cover bg-center"
-        style={{
-          backgroundImage:
-            "url('https://cdn.pixabay.com/photo/2018/05/11/08/52/garden-3387979_1280.jpg')",
-        }}
-      >
+      <section className="relative h-[60vh] md:h-[70vh] flex items-center justify-center overflow-hidden">
+        <img
+          src="https://i.pinimg.com/1200x/0a/03/b8/0a03b8191cebaae511e51064fbad6d8e.jpg"
+          alt="Thorns and Thatch Gardens"
+          className="absolute inset-0 w-full h-full object-cover object-center"
+        />
         <div className="absolute inset-0 bg-black/50"></div>
+
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
@@ -66,14 +66,22 @@ export default function Contact() {
           <MapPin className="w-5 h-5" />
           <span>Nambale, Busia County, Kenya</span>
         </div>
-        <div className="flex items-center gap-3">
+        <a
+          href="tel:+254722984568"
+          className="flex items-center gap-3 hover:underline"
+        >
           <Phone className="w-5 h-5" />
           <span>+254 722 984 568</span>
-        </div>
-        <div className="flex items-center gap-3">
+        </a>
+        <a
+          href="mailto:info@thornsandthatch.co.ke"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="flex items-center gap-3 hover:underline"
+        >
           <Mail className="w-5 h-5" />
           <span>info@thornsandthatch.co.ke</span>
-        </div>
+        </a>
         <div className="flex items-center gap-3">
           <Clock className="w-5 h-5" />
           <span>Open daily: 6:00 AM – 10:00 PM</span>
@@ -174,12 +182,24 @@ export default function Contact() {
                   <span>Nambale, Busia County, Kenya</span>
                 </li>
                 <li className="flex items-center gap-3">
-                  <Phone className="w-5 h-5 text-amber-700" />
-                  <span>+254 722 984 568</span>
+                  <a
+                    href="tel:+254722984568"
+                    className="flex items-center gap-3 hover:underline"
+                  >
+                    <Phone className="w-5 h-5 text-amber-700" />
+                    <span>+254 722 984 568</span>
+                  </a>
                 </li>
                 <li className="flex items-center gap-3">
-                  <Mail className="w-5 h-5 text-amber-700" />
-                  <span>info@thornsandthatch.co.ke</span>
+                  <a
+                    href="mailto:info@thornsandthatch.co.ke"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-3 hover:underline"
+                  >
+                    <Mail className="w-5 h-5 text-amber-700" />
+                    <span>info@thornsandthatch.co.ke</span>
+                  </a>
                 </li>
               </ul>
             </div>
@@ -215,18 +235,27 @@ export default function Contact() {
         </motion.div>
       </section>
 
-      {/* 💬 Floating WhatsApp Button */}
+      {/* 💬 Floating WhatsApp Button (official logo + pulse glow) */}
       <motion.a
         href="https://wa.me/254722984568?text=Hello%20Thorns%20%26%20Thatch%20Gardens!%20I%20would%20like%20to%20make%20an%20inquiry."
         target="_blank"
         rel="noopener noreferrer"
-        className="fixed bottom-6 right-6 bg-green-500 text-white rounded-full shadow-lg p-4 z-50 flex items-center justify-center"
+        className="fixed bottom-6 right-6 z-50 flex items-center justify-center"
         whileHover={{ scale: 1.1 }}
-        animate={{ scale: [1, 1.1, 1], opacity: [1, 0.8, 1] }}
-        transition={{ repeat: Infinity, duration: 2 }}
-        aria-label="Chat on WhatsApp"
       >
-        <MessageCircle className="w-7 h-7" />
+        <div className="relative">
+          {/* Pulse ring animation */}
+          <span className="absolute inline-flex h-full w-full rounded-full bg-green-500 opacity-75 animate-ping"></span>
+
+          {/* WhatsApp logo */}
+          <div className="relative bg-green-500 rounded-full p-4 shadow-lg">
+            <img
+              src="https://i.pinimg.com/736x/b1/a6/7d/b1a67d9315a05ed2f49326ef6bdc0fd5.jpg"
+              alt="WhatsApp"
+              className="w-8 h-8"
+            />
+          </div>
+        </div>
       </motion.a>
     </div>
   );
