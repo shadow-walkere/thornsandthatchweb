@@ -62,16 +62,20 @@ export default function Home() {
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-10 max-w-6xl mx-auto relative z-10">
           {[
             {
-              title: "🌿 Natural Beauty",
+              title: " Natural Beauty",
               desc: "Breathtaking gardens, tranquil water features, and timeless architecture create an unforgettable atmosphere.",
             },
             {
-              title: "💍 Crafted Experiences",
+              title: " Crafted Experiences",
               desc: "We tailor each event with creativity, care, and charm — ensuring every celebration is uniquely yours.",
             },
             {
-              title: "🏆 Award-Winning Service",
-              desc: "Our team has been honored for excellence in event design, hospitality, and sustainability.",
+              title: " Top-Notch Service Delivery",
+              desc: "Our team of dedicated professionals are committed to delivering excellent services in event design, hospitality, and sustainability.",
+            },
+            {
+              title: " Customer-Centric",
+              desc: "Our objective is to deliver personalized customer satisfaction and experience that exceeds your expectations",
             },
           ].map((item, index) => (
             <motion.div
@@ -162,19 +166,19 @@ export default function Home() {
               name: "Sarah & Daniel",
               quote:
                 "Our wedding at Thorns & Thatch was pure magic — the gardens glowed, the staff went above and beyond, and every detail felt like a dream.",
-              img: "/assets/childpark1.jpg",
+              img: "https://i.pinimg.com/1200x/e0/e3/7c/e0e37c3d35480131604a1e2d7db6a4af.jpg",
             },
             {
               name: "Lydia K.",
               quote:
                 "A serene haven! Whether you’re hosting an event or simply visiting, this place radiates peace and elegance.",
-              img: "/assets/client2.jpg",
+              img: "https://i.pinimg.com/736x/20/24/21/202421ab7c99981a047bb723ced321d0.jpg",
             },
             {
               name: "Michael O.",
               quote:
                 "I’ve never seen a venue blend nature and sophistication so seamlessly. Every corner tells a story — absolutely breathtaking.",
-              img: "/assets/client3.jpg",
+              img: "https://i.pinimg.com/1200x/d5/3c/aa/d53caa5715c4bad706740b140d95a363.jpg",
             },
           ].map((testimonial, i) => (
             <motion.div
