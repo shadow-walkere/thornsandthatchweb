@@ -53,7 +53,7 @@ export default function About() {
           <div className="overflow-hidden rounded-t-[180px] shadow-lg border border-[#e9dfd4]">
             <img
               src="/assets/wedding1.jpg"
-              alt="Thorns & Thatch Gardens wedding setup"
+              alt="The Thorn & Thatch Gardens wedding setup"
               className="w-full h-[600px] object-cover hover:scale-105 transition-transform duration-700 ease-out"
             />
           </div>
@@ -68,14 +68,14 @@ export default function About() {
           className="space-y-6"
         >
           <h3 className="text-xl text-[#b2987d] uppercase tracking-[3px] font-semibold">
-            Thorns & Thatch Gardens
+            The Thorn & Thatch Gardens
           </h3>
           <h2 className="text-3xl md:text-4xl font-light text-[#4a3c2a] leading-relaxed">
             Wedding Ceremony & Reception Venue
           </h2>
 
           <p className="font-['Great_Vibes'] text-3xl text-[#a17c50]">
-            Welcome to Thorns & Thatch Gardens
+            Welcome to The Thorn & Thatch Gardens
           </p>
 
           <p className="text-[#5e4c3a] leading-relaxed text-lg">
@@ -112,10 +112,10 @@ export default function About() {
             viewport={{ once: true }}
             className="text-lg leading-relaxed text-[#5e4c3a]"
           >
-            Nature has a way of bringing people together. At Thorns & Thatch, we
-            believe in celebrating love, laughter, and life in harmony with the
-            environment. Our mission is to provide spaces where stories bloom,
-            and every guest leaves with memories rooted in joy.
+            Nature has a way of bringing people together. At The Thorn & Thatch,
+            we believe in celebrating love, laughter, and life in harmony with
+            the environment. Our mission is to provide spaces where stories
+            bloom, and every guest leaves with memories rooted in joy.
           </motion.p>
         </div>
       </section>
@@ -162,7 +162,7 @@ export default function About() {
       </section>
 
       {/* 🌷 Meet Our Team */}
-      <section className="bg-[#FCF8F3] py-24">
+      {/* <section className="bg-[#FCF8F3] py-24">
         <div className="max-w-6xl mx-auto px-6 md:px-12 text-center">
           <motion.h2
             initial="hidden"
@@ -216,7 +216,7 @@ export default function About() {
             ))}
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* 🍃 Call to Action */}
       <section className="bg-[#7b6650] text-white py-20 text-center px-6">

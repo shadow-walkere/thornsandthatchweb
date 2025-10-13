@@ -26,12 +26,12 @@ export default function Home() {
         className="px-6 sm:px-8 py-16 md:py-24 text-center bg-gradient-to-b from-[#F7EFE5] to-[#FCF8F3]"
       >
         <h2 className="text-3xl sm:text-4xl md:text-5xl font-light text-[#7b6650] mb-4 sm:mb-6 tracking-wide">
-          Welcome to Thorns & Thatch Gardens
+          Welcome to The Thorn & Thatch Gardens
         </h2>
         <p className="max-w-3xl mx-auto text-base sm:text-lg text-[#5e4c3a] leading-relaxed mb-8 px-2">
           Hidden amidst nature’s gentle embrace,{" "}
           <span className="text-[#a17c50] font-semibold">
-            Thorns & Thatch Gardens
+            The Thorn & Thatch Gardens
           </span>{" "}
           is a place where every leaf whispers serenity. Whether it’s your
           wedding, a private celebration, or a quiet moment — we transform
@@ -165,7 +165,7 @@ export default function Home() {
             {
               name: "Sarah & Daniel",
               quote:
-                "Our wedding at Thorns & Thatch was pure magic — the gardens glowed, the staff went above and beyond, and every detail felt like a dream.",
+                "Our wedding at The Thorn & Thatch was pure magic — the gardens glowed, the staff went above and beyond, and every detail felt like a dream.",
               img: "https://i.pinimg.com/1200x/e0/e3/7c/e0e37c3d35480131604a1e2d7db6a4af.jpg",
             },
             {

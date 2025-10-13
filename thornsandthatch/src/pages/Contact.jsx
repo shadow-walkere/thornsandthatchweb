@@ -35,7 +35,7 @@ export default function Contact() {
       <section className="relative h-[60vh] md:h-[70vh] flex items-center justify-center overflow-hidden">
         <img
           src="https://i.pinimg.com/1200x/0a/03/b8/0a03b8191cebaae511e51064fbad6d8e.jpg"
-          alt="Thorns and Thatch Gardens"
+          alt="The Thorn and Thatch Gardens"
           className="absolute inset-0 w-full h-full object-cover object-center"
         />
         <div className="absolute inset-0 bg-black/50"></div>
@@ -50,7 +50,7 @@ export default function Contact() {
             Get in Touch
           </h1>
           <p className="text-lg text-amber-200 max-w-2xl mx-auto">
-            Let’s bring your dream event to life at Thorns & Thatch Gardens
+            Let’s bring your dream event to life at The Thorn & Thatch Gardens
           </p>
         </motion.div>
       </section>
@@ -74,17 +74,17 @@ export default function Contact() {
           <span>+254 722 984 568</span>
         </a>
         <a
-          href="mailto:info@thornsandthatch.co.ke"
+          href="mailto:info@thornandthatch.co.ke"
           target="_blank"
           rel="noopener noreferrer"
           className="flex items-center gap-3 hover:underline"
         >
           <Mail className="w-5 h-5" />
-          <span>info@thornsandthatch.co.ke</span>
+          <span>info@thornandthatch.co.ke</span>
         </a>
         <div className="flex items-center gap-3">
           <Clock className="w-5 h-5" />
-          <span>Open daily: 6:00 AM – 10:00 PM</span>
+          <span>No clocks here — we’re open 24/7 daily!</span>
         </div>
       </motion.section>
 
@@ -170,7 +170,7 @@ export default function Contact() {
               <p className="text-gray-700 mb-8 leading-relaxed">
                 From weddings to weekend getaways,{" "}
                 <span className="font-medium text-amber-700">
-                  Thorns & Thatch Gardens
+                  The Thorn & Thatch Gardens
                 </span>{" "}
                 is a sanctuary for love, laughter, and unforgettable memories in
                 the heart of Busia County.
@@ -192,13 +192,13 @@ export default function Contact() {
                 </li>
                 <li className="flex items-center gap-3">
                   <a
-                    href="mailto:info@thornsandthatch.co.ke"
+                    href="mailto:info@thornandthatch.co.ke"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="flex items-center gap-3 hover:underline"
                   >
                     <Mail className="w-5 h-5 text-amber-700" />
-                    <span>info@thornsandthatch.co.ke</span>
+                    <span>info@thornandthatch.co.ke</span>
                   </a>
                 </li>
               </ul>
@@ -207,7 +207,7 @@ export default function Contact() {
             {/* Map Embed */}
             <div className="mt-10 w-full h-64 md:h-80 relative rounded-2xl overflow-hidden shadow-lg border border-amber-200 group">
               <iframe
-                title="Thorns and Thatch Gardens Location"
+                title="The Thorn and Thatch Gardens Location"
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d63515.69666115301!2d34.2135!3d0.4592!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x177f94ac69f1b1d3%3A0x1bba06a244dd0c53!2sNambale%2C%20Busia%20County%2C%20Kenya!5e0!3m2!1sen!2ske!4v1728016451123!5m2!1sen!2ske"
                 width="100%"
                 height="100%"

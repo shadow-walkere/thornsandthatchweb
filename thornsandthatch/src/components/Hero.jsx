@@ -14,7 +14,7 @@ export default function Hero() {
       >
         <img
           src="/assets/house2.jpg"
-          alt="Thorns & Thatch Gardens"
+          alt="The Thorn & Thatch Gardens"
           className="w-full h-full object-cover object-center brightness-[0.85]"
         />
         <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/50 to-black/70"></div>
@@ -39,7 +39,7 @@ export default function Hero() {
       >
         <h1 className="text-5xl sm:text-6xl md:text-8xl font-extrabold tracking-tight mb-6 drop-shadow-[0_6px_8px_rgba(0,0,0,0.4)]">
           <span className="bg-clip-text text-transparent bg-gradient-to-r from-amber-200 via-yellow-400 to-amber-600 animate-gradient-x">
-            Thorns & Thatch Gardens
+            The Thorn & Thatch Gardens
           </span>
         </h1>
 
@@ -49,8 +49,7 @@ export default function Hero() {
           transition={{ delay: 0.6, duration: 1 }}
           className="text-base sm:text-lg md:text-xl text-gray-100 leading-relaxed mb-10 italic"
         >
-          Where every celebration is wrapped in nature’s quiet elegance and
-          timeless charm.
+          Naturally Refreshing
         </motion.p>
 
         <motion.div

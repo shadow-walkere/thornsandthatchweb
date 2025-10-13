@@ -190,7 +190,7 @@ export default function Services() {
       {/* CTA Section */}
       <section className="text-center py-16 bg-amber-50">
         <h3 className="text-2xl font-light text-amber-800 mb-6">
-          Ready to experience Thorns & Thatch Gardens?
+          Ready to experience The Thorn & Thatch Gardens?
         </h3>
         <a
           href="/contact"

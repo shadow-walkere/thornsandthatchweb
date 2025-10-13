@@ -97,7 +97,7 @@ export default function Gallery() {
           className="relative z-10 text-center text-white px-6"
         >
           <h1 className="text-4xl md:text-6xl font-extrabold mb-4 tracking-wide drop-shadow-lg">
-            The Heart of Thorns & Thatch
+            The Heart of The Thorn & Thatch
           </h1>
           <p className="text-lg text-amber-200 max-w-2xl mx-auto">
             Wander through beauty, laughter, and memories—captured in every
@@ -113,8 +113,10 @@ export default function Gallery() {
         </h2>
         <p className="text-gray-700 text-lg leading-relaxed">
           At{" "}
-          <span className="text-amber-700 font-semibold">Thorns & Thatch</span>,
-          we celebrate moments that blossom into cherished memories. From
+          <span className="text-amber-700 font-semibold">
+            The Thorn & Thatch
+          </span>
+          , we celebrate moments that blossom into cherished memories. From
           romantic weddings under twinkling lights to cozy picnics beneath our
           ancient trees, our gardens capture joy in its purest form.
         </p>
@@ -230,7 +232,7 @@ export default function Gallery() {
           “In every flower, there’s a story waiting to be told. In every path, a
           memory waiting to be made.”
         </blockquote>
-        <p className="mt-4 text-amber-200">— Thorns & Thatch Gardens</p>
+        <p className="mt-4 text-amber-200">— The Thorn & Thatch Garden</p>
       </section>
 
       {/* 💫 Lightbox */}

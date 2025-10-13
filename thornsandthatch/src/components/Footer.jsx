@@ -48,12 +48,10 @@ export default function Footer() {
           viewport={{ once: true }}
         >
           <h2 className="text-2xl font-bold text-amber-400 mb-3">
-            Thorns <span className="text-[#c2a678] italic">& Thatch</span>
+            The Thorn <span className="text-[#c2a678] italic">& Thatch</span>
           </h2>
           <p className="text-sm leading-relaxed text-[#e7decf]">
-            A sanctuary of natural beauty and timeless elegance. Celebrate
-            life’s precious moments surrounded by serenity, sophistication, and
-            heartfelt service.
+            Naturally Refreshing
           </p>
         </motion.div>
 
@@ -102,12 +100,7 @@ export default function Footer() {
             <Clock size={16} />
             <span className="text-sm">Monday – Sunday</span>
           </div>
-          <p className="text-sm text-[#e7decf] font-medium">
-            6:00 AM – 10:00 PM
-          </p>
-          <p className="text-xs mt-4 text-[#b9a684]">
-            *Private bookings available beyond regular hours upon request.
-          </p>
+          <p className="text-sm text-[#e7decf] font-medium">Open 24/7 daily!</p>
         </motion.div>
 
         {/* 📞 Contact Info */}
@@ -127,7 +120,7 @@ export default function Footer() {
             </li>
             <li className="flex items-center space-x-2">
               <Mail size={16} />
-              <span>info@thornsandthatch.com</span>
+              <span>info@thornandthatch.com</span>
             </li>
             <li className="flex items-center space-x-2">
               <MapPin size={16} />
@@ -164,7 +157,7 @@ export default function Footer() {
         viewport={{ once: true }}
         className="relative z-10 mt-12 border-t border-[#4a3c2a] pt-6 text-center text-xs text-[#a18e73]"
       >
-        © {new Date().getFullYear()} Thorns & Thatch Gardens. All rights
+        © {new Date().getFullYear()} The Thorn & Thatch Gardens. All rights
         reserved.
       </motion.div>
     </footer>

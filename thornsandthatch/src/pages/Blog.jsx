@@ -15,7 +15,7 @@ const blogPosts = [
   },
   {
     id: 2,
-    title: "A Taste of Nature: Food & Drinks at Thorns & Thatch",
+    title: "A Taste of Nature: Food & Drinks at The Thorn & Thatch",
     excerpt:
       "From freshly brewed garden teas to chef-inspired farm-to-table meals, our menu is a tribute to nature’s flavors.",
     date: "September 10, 2025",

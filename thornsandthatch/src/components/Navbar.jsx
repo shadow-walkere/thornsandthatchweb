@@ -44,7 +44,7 @@ export default function Header() {
           >
             <motion.img
               src="/assets/logo1.jpg"
-              alt="Thorns & Thatch Gardens Logo"
+              alt="The Thorn & Thatch Gardens Logo"
               className="h-16 w-auto rounded-2xl shadow-md border-2 border-amber-200"
               animate={{ y: [0, -2, 0] }}
               transition={{
@@ -55,7 +55,7 @@ export default function Header() {
             />
             <div>
               <h1 className="text-2xl md:text-3xl font-extrabold text-amber-800 tracking-tight leading-none">
-                The Thorns{" "}
+                The Thorn{" "}
                 <span className="text-green-700 italic">& Thatch</span>
               </h1>
               <p className="text-xs text-gray-600 mt-1 tracking-wide">
@@ -91,8 +91,8 @@ export default function Header() {
         {/* 🌸 Social Icons (Desktop) */}
         <div className="hidden md:flex items-center space-x-4">
           {[
-            ["https://facebook.com/thornsandthatch", <Facebook size={18} />],
-            ["https://instagram.com/thornsandthatch", <Instagram size={18} />],
+            ["https://facebook.com/thornandthatch", <Facebook size={18} />],
+            ["https://instagram.com/thornandthatch", <Instagram size={18} />],
           ].map(([url, icon], i) => (
             <motion.a
               key={i}
@@ -157,7 +157,7 @@ export default function Header() {
                 <Facebook className="w-6 h-6" />
               </motion.a>
               <motion.a
-                href="https://instagram.com/thornsandthatch"
+                href="https://instagram.com/thornandthatch"
                 target="_blank"
                 rel="noopener noreferrer"
                 whileHover={{ scale: 1.2 }}

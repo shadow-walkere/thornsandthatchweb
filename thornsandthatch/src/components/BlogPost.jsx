@@ -15,7 +15,7 @@ const blogPosts = [
   },
   {
     id: 2,
-    title: "A Taste of Nature: Food & Drinks at Thorns & Thatch",
+    title: "A Taste of Nature: Food & Drinks at The Thorn & Thatch",
     content: `
       Delight your senses with our garden-inspired cuisine — freshly, organic vegetables, palatable meals
       and signature drinks crafted with floral infusions. Whether it's brunch under the trees or 
@@ -41,7 +41,7 @@ const blogPosts = [
     title: "Team Building in Bloom",
     content: `
       Reconnect, collaborate, and grow together in an inspiring outdoor environment. 
-      From team challenges to group picnics and creative workshops, Thorns & Thatch provides 
+      From team challenges to group picnics and creative workshops, The Thorn & Thatch provides 
       the perfect space to spark creativity and strengthen bonds.
     `,
     date: "August 10, 2025",
@@ -64,7 +64,7 @@ const blogPosts = [
     id: 6,
     title: "Events that Bloom",
     content: `
-      From birthdays to bridal showers and corporate events, Thorns & Thatch offers spaces that adapt beautifully 
+      From birthdays to bridal showers and corporate events, The Thorn & Thatch offers spaces that adapt beautifully 
       to every celebration. Add floral backdrops, string lights, and personalized touches for an unforgettable day.
     `,
     date: "July 10, 2025",
