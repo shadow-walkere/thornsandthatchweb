@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 
 const blogPosts = [
@@ -10,7 +11,7 @@ const blogPosts = [
       From floral arches to evening lanterns, we ensure every moment feels magical.
     `,
     date: "September 25, 2025",
-    image: "/assets/wedding1.jpg",
+    image: "/assets/wedding4.jpeg",
     category: "Weddings",
   },
   {
@@ -22,7 +23,7 @@ const blogPosts = [
       an evening dinner by candlelight, every dish celebrates nature’s bounty.
     `,
     date: "September 10, 2025",
-    image: "/assets/food2.jpg",
+    image: "/assets/food1.jpg",
     category: "Food & Drinks",
   },
   {
@@ -33,7 +34,7 @@ const blogPosts = [
       Wake up to birdsong, enjoy breakfast on your private patio, and let the serenity of nature restore your soul.
     `,
     date: "August 28, 2025",
-    image: "/assets/accommodation1.jpg",
+    image: "/assets/accommodation5.jpeg",
     category: "Accommodation",
   },
   {
@@ -45,19 +46,19 @@ const blogPosts = [
       the perfect space to spark creativity and strengthen bonds.
     `,
     date: "August 10, 2025",
-    image: "/assets/team1.jpg",
+    image: "/assets/picnic9.jpeg",
     category: "Team Building",
   },
   {
     id: 5,
-    title: "Nature Infused Picnics",
+    title: "Nature-Infused Picnics",
     content: `
       Picture a chilling afternoon surrounded by lush greenery, gentle breezes, and the sound of birdsong. 
       Our picnic spots invite you to foster appreciation with the environment,
       create new expeiences with your family.
     `,
     date: "July 24, 2025",
-    image: "/assets/picnic2.jpg",
+    image: "/assets/picnic3.jpeg",
     category: "Picnics",
   },
   {
@@ -68,7 +69,7 @@ const blogPosts = [
       to every celebration. Add floral backdrops, string lights, and personalized touches for an unforgettable day.
     `,
     date: "July 10, 2025",
-    image: "/assets/event2.jpg",
+    image: "/assets/event1.jpg",
     category: "Events",
   },
 ];
@@ -77,13 +78,21 @@ export default function BlogPost() {
   const { id } = useParams();
   const post = blogPosts.find((p) => p.id === parseInt(id));
 
+  // 🌿 Scroll to top when a post is opened
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth", // for a smooth scrolling effect
+    });
+  }, [id]);
+
   if (!post) {
     return (
       <div className="px-8 py-16 max-w-4xl mx-auto text-center">
-        <h1 className="text-3xl font-bold text-amber-800 mb-4">
+        <h1 className="text-3xl font-bold text-green-800 mb-4">
           Post not found
         </h1>
-        <Link to="/blog" className="text-amber-700 hover:underline">
+        <Link to="/blog" className="text-green-700 hover:underline">
           ← Back to Blog
         </Link>
       </div>
@@ -91,24 +100,26 @@ export default function BlogPost() {
   }
 
   return (
-    <div className="bg-[#FCF8F3] text-[#4a3c2a] font-serif">
+    <div className="bg-white text-[#1b3d2f] font-serif">
       {/* 🖼️ Hero Banner */}
       <section
-        className="relative h-[40vh] sm:h-[55vh] flex items-center justify-center bg-cover bg-center rounded-b-3xl overflow-hidden"
+        className="relative h-[40vh] sm:h-[55vh] flex items-center justify-center bg-cover bg-center rounded-b-3xl overflow-hidden shadow-md"
         style={{ backgroundImage: `url(${post.image})` }}
       >
-        <div className="absolute inset-0 bg-black/50"></div>
+        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/40 to-transparent"></div>
         <div className="relative z-10 text-center text-white px-4">
-          <h1 className="text-3xl sm:text-5xl font-light mb-3">{post.title}</h1>
+          <h1 className="text-3xl sm:text-5xl font-light mb-3 drop-shadow-lg">
+            {post.title}
+          </h1>
           <p className="text-sm sm:text-base italic text-gray-200">
             {post.date} • {post.category}
           </p>
         </div>
       </section>
 
-      {/* ✨ Blog Content */}
+      {/* 🌿 Blog Content */}
       <section className="px-6 sm:px-10 py-16 max-w-4xl mx-auto">
-        <div className="prose prose-lg text-[#4a3c2a] max-w-none leading-relaxed">
+        <div className="prose prose-lg text-[#1b3d2f] max-w-none leading-relaxed">
           {post.content.split("\n").map((para, idx) => (
             <p key={idx} className="mb-6 text-[1.05rem] sm:text-lg">
               {para}
@@ -119,9 +130,28 @@ export default function BlogPost() {
         <div className="mt-12 text-center">
           <Link
             to="/blog"
-            className="inline-block bg-[#a17c50] hover:bg-[#7b6650] text-white px-6 py-3 rounded-full text-sm sm:text-base font-medium transition-all shadow-md"
+            className="inline-block bg-[#2d6a4f] hover:bg-[#1b4332] text-white px-6 py-3 rounded-full text-sm sm:text-base font-medium transition-all shadow-md"
           >
             ← Back to Blog
+          </Link>
+        </div>
+      </section>
+
+      {/* 🌸 Decorative Section */}
+      <section className="bg-[#ebf5ec] py-12 mt-8">
+        <div className="max-w-4xl mx-auto text-center px-6">
+          <h3 className="text-2xl sm:text-3xl font-light text-[#2d6a4f] mb-4">
+            Love what you read?
+          </h3>
+          <p className="text-[#1b3d2f] mb-6">
+            Explore more stories and inspirations from <b>The Thorn & Thatch</b>{" "}
+            garden haven.
+          </p>
+          <Link
+            to="/blog"
+            className="inline-block bg-[#52b788] hover:bg-[#40916c] text-white px-6 py-3 rounded-full text-sm sm:text-base font-medium transition-all shadow-md"
+          >
+            🌿 View More Posts
           </Link>
         </div>
       </section>

@@ -47,7 +47,7 @@ export default function Hero() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.6, duration: 1 }}
-          className="text-base sm:text-lg md:text-xl text-gray-100 leading-relaxed mb-10 italic"
+          className="text-xl sm:text-lg md:text-xl text-gray-100 leading-relaxed mb-10 italic "
         >
           Naturally Refreshing
         </motion.p>

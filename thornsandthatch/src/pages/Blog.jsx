@@ -10,7 +10,7 @@ const blogPosts = [
     excerpt:
       "Step into a world of romance surrounded by flowers and candlelight. Discover how we turn garden spaces into dreamy wedding venues.",
     date: "September 25, 2025",
-    image: "/assets/wedding1.jpg",
+    image: "/assets/wedding4.jpeg",
     category: "Weddings",
   },
   {
@@ -28,7 +28,7 @@ const blogPosts = [
     excerpt:
       "Relax in cozy accommodation surrounded by lush gardens, gentle breezes, and the songs of nature.",
     date: "August 28, 2025",
-    image: "/assets/accomodation.jpg",
+    image: "/assets/accommodation5.jpeg",
     category: "Accommodation",
   },
   {
@@ -37,16 +37,16 @@ const blogPosts = [
     excerpt:
       "From group challenges to creative outdoor workshops, our gardens provide the perfect setting for team bonding and growth.",
     date: "August 10, 2025",
-    image: "/assets/picnics1.jpg",
+    image: "/assets/picnic9.jpeg",
     category: "Team Building",
   },
   {
     id: 5,
-    title: "Nature-Infused picnics",
+    title: "Nature-Infused Picnics",
     excerpt:
       "Unwind with a classic picnic surrounded by nature’s charm — wicker baskets, and tranquil views included.",
     date: "July 24, 2025",
-    image: "/assets/picnics2.jpg",
+    image: "/assets/picnic3.jpeg",
     category: "Picnics",
   },
   {
@@ -55,7 +55,7 @@ const blogPosts = [
     excerpt:
       "Whether it's a birthday, baby shower, or corporate event, our spaces adapt to create magical experiences for every occasion.",
     date: "July 10, 2025",
-    image: "/assets/event1.jpg",
+    image: "/assets/wedding5.jpeg",
     category: "Events",
   },
 ];
@@ -113,8 +113,8 @@ export default function Blog() {
   const featuredPost = blogPosts[featuredIndex];
 
   return (
-    <div className="bg-[#FCF8F3] text-[#4a3c2a] font-serif">
-      {/* 🌼 Auto-Rotating Featured Story */}
+    <div className="bg-gradient-to-b from-green-50 to-white text-[#1a3b28] font-serif">
+      {/* 🌿 Featured Story */}
       <section className="relative mt-28 sm:mt-36 mb-20 px-4 sm:px-8 lg:px-10 max-w-7xl mx-auto">
         <div className="relative rounded-3xl overflow-hidden shadow-2xl h-[360px] sm:h-[420px] lg:h-[480px]">
           <AnimatePresence mode="wait">
@@ -123,7 +123,7 @@ export default function Blog() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              transition={{ duration: 1.5 }}
+              transition={{ duration: 1.2 }}
               className="absolute inset-0"
             >
               <img
@@ -131,20 +131,20 @@ export default function Blog() {
                 alt={featuredPost.title}
                 className="w-full h-full object-cover brightness-90"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/40 to-transparent flex items-end p-5 sm:p-10 lg:p-14">
+              <div className="absolute inset-0 bg-gradient-to-t from-green-950/80 via-green-900/40 to-transparent flex items-end p-6 sm:p-10 lg:p-14 backdrop-blur-[2px]">
                 <div className="text-white max-w-xl sm:max-w-2xl">
-                  <p className="text-xs sm:text-sm uppercase tracking-widest text-amber-300 mb-2">
-                    ✨ Featured Story
+                  <p className="text-xs sm:text-sm uppercase tracking-widest text-green-300 mb-2">
+                    🌿 Featured Story
                   </p>
                   <h2 className="text-2xl sm:text-4xl font-light mb-3 leading-snug">
                     {featuredPost.title}
                   </h2>
-                  <p className="text-sm sm:text-base mb-6 text-gray-200">
+                  <p className="text-sm sm:text-base mb-6 text-green-100">
                     {featuredPost.excerpt}
                   </p>
                   <Link
                     to={`/blog/${featuredPost.id}`}
-                    className="inline-block bg-[#a17c50] hover:bg-[#7b6650] px-5 sm:px-6 py-2.5 sm:py-3 rounded-full text-sm font-medium text-white shadow-md transition-all"
+                    className="inline-block bg-green-700 hover:bg-green-600 px-6 py-3 rounded-full text-sm font-medium text-white shadow-md transition-all"
                   >
                     Read Full Story →
                   </Link>
@@ -154,7 +154,7 @@ export default function Blog() {
           </AnimatePresence>
         </div>
 
-        {/* 🌾 Indicator Dots */}
+        {/* Dots */}
         <div className="flex justify-center mt-6 space-x-2">
           {blogPosts.map((_, idx) => (
             <button
@@ -162,32 +162,33 @@ export default function Blog() {
               onClick={() => setFeaturedIndex(idx)}
               className={`w-3 h-3 rounded-full transition-all ${
                 idx === featuredIndex
-                  ? "bg-[#7b6650]"
-                  : "bg-[#d3c6b8] hover:bg-[#a17c50]"
+                  ? "bg-green-700"
+                  : "bg-green-200 hover:bg-green-400"
               }`}
             />
           ))}
         </div>
       </section>
 
-      {/* 🌿 Filters */}
-      <section className="px-4 sm:px-8 lg:px-10 py-10 max-w-7xl mx-auto flex flex-col md:flex-row md:items-center md:justify-between gap-5 border-b border-[#e5d7c8]">
+      {/* 🌱 Filters */}
+      <section className="px-4 sm:px-8 lg:px-10 py-10 max-w-7xl mx-auto flex flex-col md:flex-row md:items-center md:justify-between gap-5 border-b border-green-200">
         <div className="flex flex-wrap gap-3 justify-center md:justify-start">
           {categories.map((cat) => (
-            <button
+            <motion.button
               key={cat}
+              whileHover={{ scale: 1.05 }}
               onClick={() => {
                 setSelectedCategory(cat);
                 setCurrentPage(1);
               }}
               className={`px-5 py-2 rounded-full border text-sm font-medium transition-all ${
                 selectedCategory === cat
-                  ? "bg-[#7b6650] text-white border-[#7b6650]"
-                  : "bg-white text-[#5e4c3a] border-gray-300 hover:bg-[#f7efe5]"
+                  ? "bg-green-700 text-white border-green-700"
+                  : "bg-white text-green-800 border-green-400 hover:bg-green-50"
               }`}
             >
               {cat}
-            </button>
+            </motion.button>
           ))}
         </div>
 
@@ -200,14 +201,14 @@ export default function Blog() {
               setSearchTerm(e.target.value);
               setCurrentPage(1);
             }}
-            className="w-full px-4 py-2 border rounded-full focus:outline-none focus:ring-2 focus:ring-[#a17c50] text-[#4a3c2a]"
+            className="w-full px-4 py-2 border rounded-full focus:outline-none focus:ring-2 focus:ring-green-500 text-green-900 placeholder-green-400"
           />
         </div>
       </section>
 
       {/* 🌸 Blog Grid */}
       <section className="px-4 sm:px-8 lg:px-10 pb-16 max-w-7xl mx-auto">
-        <h3 className="text-2xl sm:text-3xl text-center font-light mb-12 text-[#7b6650] tracking-wide">
+        <h3 className="text-2xl sm:text-3xl text-center font-light mb-12 text-green-700 tracking-wide">
           Garden Highlights 🌸
         </h3>
 
@@ -220,7 +221,7 @@ export default function Blog() {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
                 viewport={{ once: true }}
-                className="bg-white rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all border border-[#e9dfd4] hover:-translate-y-2"
+                className="bg-white rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all border border-green-100 hover:-translate-y-2"
               >
                 <div className="relative">
                   <img
@@ -228,22 +229,22 @@ export default function Blog() {
                     alt={post.title}
                     className="h-52 sm:h-56 lg:h-60 w-full object-cover hover:scale-105 transition-transform duration-700 ease-out"
                   />
-                  <span className="absolute top-3 left-3 bg-[#7b6650]/90 text-white text-xs font-medium px-3 py-1 rounded-full">
+                  <span className="absolute top-3 left-3 bg-green-700/90 text-white text-xs font-medium px-3 py-1 rounded-full">
                     {post.category}
                   </span>
                 </div>
 
                 <div className="p-6">
-                  <p className="text-xs text-gray-500 mb-2">{post.date}</p>
-                  <h2 className="text-lg sm:text-xl font-semibold text-[#7b6650] mb-3 leading-snug">
+                  <p className="text-xs text-green-600 mb-2">{post.date}</p>
+                  <h2 className="text-lg sm:text-xl font-semibold text-green-800 mb-3 leading-snug">
                     {post.title}
                   </h2>
-                  <p className="text-[#5e4c3a] mb-5 text-sm leading-relaxed">
+                  <p className="text-green-900/80 mb-5 text-sm leading-relaxed">
                     {post.excerpt}
                   </p>
                   <Link
                     to={`/blog/${post.id}`}
-                    className="text-[#a17c50] hover:text-[#7b6650] font-medium text-sm transition-all"
+                    className="text-green-700 hover:text-green-500 font-medium text-sm transition-all"
                   >
                     Read More →
                   </Link>
@@ -252,7 +253,7 @@ export default function Blog() {
             ))}
           </div>
         ) : (
-          <p className="text-center text-gray-500 mt-12 text-lg">
+          <p className="text-center text-green-700 mt-12 text-lg">
             No posts found — try a different category or keyword 🌿
           </p>
         )}
@@ -263,7 +264,7 @@ export default function Blog() {
             <button
               onClick={() => goToPage(currentPage - 1)}
               disabled={currentPage === 1}
-              className="px-4 py-2 rounded-md border text-sm font-medium bg-white text-gray-700 border-gray-300 hover:bg-[#f7efe5] disabled:opacity-50"
+              className="px-4 py-2 rounded-md border text-sm font-medium bg-white text-green-700 border-green-400 hover:bg-green-50 disabled:opacity-50"
             >
               ← Previous
             </button>
@@ -273,8 +274,8 @@ export default function Blog() {
                 onClick={() => goToPage(i + 1)}
                 className={`px-4 py-2 rounded-md border text-sm font-medium ${
                   currentPage === i + 1
-                    ? "bg-[#7b6650] text-white border-[#7b6650]"
-                    : "bg-white text-[#5e4c3a] border-gray-300 hover:bg-[#f7efe5]"
+                    ? "bg-green-700 text-white border-green-700"
+                    : "bg-white text-green-800 border-green-400 hover:bg-green-50"
                 }`}
               >
                 {i + 1}
@@ -283,7 +284,7 @@ export default function Blog() {
             <button
               onClick={() => goToPage(currentPage + 1)}
               disabled={currentPage === totalPages}
-              className="px-4 py-2 rounded-md border text-sm font-medium bg-white text-gray-700 border-gray-300 hover:bg-[#f7efe5] disabled:opacity-50"
+              className="px-4 py-2 rounded-md border text-sm font-medium bg-white text-green-700 border-green-400 hover:bg-green-50 disabled:opacity-50"
             >
               Next →
             </button>
