@@ -17,7 +17,7 @@ export default function Hero() {
           alt="The Thorn & Thatch Gardens"
           className="w-full h-full object-cover object-center brightness-[0.85]"
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/50 to-black/70"></div>
+        <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/50 to-black/70" />
       </motion.div>
 
       {/* 🌤️ Ambient Glow Overlay */}
@@ -35,16 +35,15 @@ export default function Hero() {
         initial={{ opacity: 0, y: 60 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1.2, ease: "easeOut" }}
-        className="relative z-10 px-6 sm:px-10 max-w-4xl mx-auto text-white"
+        className="relative z-10 px-4 sm:px-8 max-w-4xl mx-auto text-white"
       >
-        {/* 🌸 Title */}
-        <h1 className="text-5xl sm:text-6xl md:text-8xl font-extrabold tracking-tight mb-6 leading-tight drop-shadow-[0_6px_8px_rgba(0,0,0,0.4)]">
+        <h1 className="font-extrabold tracking-tight mb-6 leading-tight drop-shadow-[0_6px_8px_rgba(0,0,0,0.4)]">
           {/* Line 1 - The */}
           <motion.span
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2, duration: 0.8 }}
-            className="block bg-clip-text text-transparent bg-gradient-to-r from-amber-200 via-yellow-400 to-amber-600 animate-gradient-x"
+            className="block text-5xl sm:text-6xl md:text-8xl bg-clip-text text-transparent bg-gradient-to-r from-amber-200 via-yellow-400 to-amber-600 animate-gradient-x"
           >
             The
           </motion.span>
@@ -54,7 +53,7 @@ export default function Hero() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.5, duration: 0.8 }}
-            className="block text-[1.2em] sm:text-[1.05em] font-black bg-clip-text text-transparent bg-gradient-to-r from-amber-300 via-yellow-400 to-amber-500 animate-gradient-x"
+            className="block text-[2.7rem] sm:text-7xl md:text-9xl font-black bg-clip-text text-transparent bg-gradient-to-r from-amber-300 via-yellow-400 to-amber-500 animate-gradient-x whitespace-nowrap"
           >
             Thorn & Thatch
           </motion.span>
@@ -64,18 +63,17 @@ export default function Hero() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.8, duration: 0.8 }}
-            className="block bg-clip-text text-transparent bg-gradient-to-r from-amber-200 via-yellow-400 to-amber-600 animate-gradient-x"
+            className="block text-5xl sm:text-6xl md:text-8xl bg-clip-text text-transparent bg-gradient-to-r from-amber-200 via-yellow-400 to-amber-600 animate-gradient-x"
           >
             Gardens
           </motion.span>
         </h1>
 
-        {/* ✨ Subtitle */}
         <motion.p
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 1.2, duration: 1 }}
-          className="text-xl sm:text-lg md:text-xl text-gray-100 leading-relaxed mb-10 italic"
+          className="text-lg sm:text-xl md:text-2xl text-gray-100 leading-relaxed mb-10 italic"
         >
           Naturally Refreshing
         </motion.p>
@@ -95,7 +93,7 @@ export default function Hero() {
               color: "#7b6650",
             }}
             whileTap={{ scale: 0.96 }}
-            className="bg-white text-[#7b6650] font-semibold px-10 py-4 rounded-full shadow-lg hover:shadow-2xl transition-all text-base sm:text-lg"
+            className="bg-white text-[#7b6650] font-semibold px-8 sm:px-10 py-4 rounded-full shadow-lg hover:shadow-2xl transition-all text-base sm:text-lg"
           >
             Plan Your Visit
           </motion.a>
@@ -104,7 +102,7 @@ export default function Hero() {
             href="/Gallery"
             whileHover={{ scale: 1.08 }}
             whileTap={{ scale: 0.96 }}
-            className="border border-white/80 text-white font-medium px-10 py-4 rounded-full hover:bg-white/10 transition-all text-base sm:text-lg"
+            className="border border-white/80 text-white font-medium px-8 sm:px-10 py-4 rounded-full hover:bg-white/10 transition-all text-base sm:text-lg"
           >
             View Gallery
           </motion.a>
