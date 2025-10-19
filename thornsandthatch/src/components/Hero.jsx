@@ -37,29 +37,58 @@ export default function Hero() {
         transition={{ duration: 1.2, ease: "easeOut" }}
         className="relative z-10 px-6 sm:px-10 max-w-4xl mx-auto text-white"
       >
-        <h1 className="text-5xl sm:text-6xl md:text-8xl font-extrabold tracking-tight mb-6 drop-shadow-[0_6px_8px_rgba(0,0,0,0.4)]">
-          <span className="bg-clip-text text-transparent bg-gradient-to-r from-amber-200 via-yellow-400 to-amber-600 animate-gradient-x">
-            The Thorn & Thatch Gardens
-          </span>
+        {/* 🌸 Title */}
+        <h1 className="text-5xl sm:text-6xl md:text-8xl font-extrabold tracking-tight mb-6 leading-tight drop-shadow-[0_6px_8px_rgba(0,0,0,0.4)]">
+          {/* Line 1 - The */}
+          <motion.span
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.2, duration: 0.8 }}
+            className="block bg-clip-text text-transparent bg-gradient-to-r from-amber-200 via-yellow-400 to-amber-600 animate-gradient-x"
+          >
+            The
+          </motion.span>
+
+          {/* Line 2 - Thorn & Thatch */}
+          <motion.span
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.5, duration: 0.8 }}
+            className="block text-[1.2em] sm:text-[1.05em] font-black bg-clip-text text-transparent bg-gradient-to-r from-amber-300 via-yellow-400 to-amber-500 animate-gradient-x"
+          >
+            Thorn & Thatch
+          </motion.span>
+
+          {/* Line 3 - Gardens */}
+          <motion.span
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.8, duration: 0.8 }}
+            className="block bg-clip-text text-transparent bg-gradient-to-r from-amber-200 via-yellow-400 to-amber-600 animate-gradient-x"
+          >
+            Gardens
+          </motion.span>
         </h1>
 
+        {/* ✨ Subtitle */}
         <motion.p
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ delay: 0.6, duration: 1 }}
-          className="text-xl sm:text-lg md:text-xl text-gray-100 leading-relaxed mb-10 italic "
+          transition={{ delay: 1.2, duration: 1 }}
+          className="text-xl sm:text-lg md:text-xl text-gray-100 leading-relaxed mb-10 italic"
         >
           Naturally Refreshing
         </motion.p>
 
+        {/* 🌻 Buttons */}
         <motion.div
           className="flex flex-col sm:flex-row gap-4 justify-center"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ delay: 0.8 }}
+          transition={{ delay: 1.4 }}
         >
           <motion.a
-            href="/contact"
+            href="/Contact"
             whileHover={{
               scale: 1.08,
               backgroundColor: "#fef3c7",
@@ -72,7 +101,7 @@ export default function Hero() {
           </motion.a>
 
           <motion.a
-            href="/gallery"
+            href="/Gallery"
             whileHover={{ scale: 1.08 }}
             whileTap={{ scale: 0.96 }}
             className="border border-white/80 text-white font-medium px-10 py-4 rounded-full hover:bg-white/10 transition-all text-base sm:text-lg"
