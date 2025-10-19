@@ -210,7 +210,7 @@ export default function Contact() {
                 </li>
                 <li className="flex items-center gap-3">
                   <Clock className="w-5 h-5 text-[#2d6a4f]" />
-                  <span>Open daily: 7:00am – 11:00pm</span>
+                  <span>Open daily: 24/7!</span>
                 </li>
               </ul>
             </div>
