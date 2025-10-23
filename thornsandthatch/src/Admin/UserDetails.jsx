@@ -81,7 +81,7 @@ const UsersDetails = () => {
     localStorage.removeItem("adminToken");
     setVisitorCount(0);
     setError("You have been logged out.");
-    navigate("/admin");
+    navigate("/adminlyc");
   };
 
   if (loading) {

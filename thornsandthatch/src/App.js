@@ -59,7 +59,7 @@ import ManageGallery from "./Admin/ManageGallery";
 import AdminLogin from "./Admin/AdminLogin.jsx";
 import ProtectedRoute from "./Admin/ProtectedRoute.jsx";
 import AdminDashboard from "./Admin/AdminDashboard.jsx";
-import VisitorTracker from "./Admin/VisitorTracker.jsx";
+import VisitorTracker from "./components/VisitorTracker.jsx";
 
 // 👇 create a wrapper component to manage layout
 function AppLayout() {
