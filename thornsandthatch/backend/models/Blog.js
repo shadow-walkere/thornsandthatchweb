@@ -2,9 +2,12 @@ const mongoose = require("mongoose");
 
 const blogSchema = new mongoose.Schema(
   {
-    name: { type: String, required: true },
-    quote: { type: String, required: true },
-    image: { type: String, required: true },
+    title: { type: String, required: true },
+    author: { type: String, required: true },
+    content: { type: String, required: true },
+    image: { type: String, default: "" },
+    likes: { type: Number, default: 0 },
+    approved: { type: Boolean, default: false },
     category: {
       type: String,
       enum: [
@@ -19,7 +22,6 @@ const blogSchema = new mongoose.Schema(
       default: "All",
     },
   },
-
   { timestamps: true }
 );
 

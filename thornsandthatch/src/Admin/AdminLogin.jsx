@@ -20,14 +20,9 @@ const AdminLogin = () => {
         password,
       });
 
-      // if (response.data && response.data.token) {
-      //   localStorage.setItem("adminToken", response.data.token);
-      //   navigate("/admin/dashboard");
       if (response.data && response.data.token) {
-  localStorage.setItem("adminToken", response.data.token);
-  console.log("Token saved:", localStorage.getItem("adminToken")); // Add this
-  navigate("/admin/dashboard");
-
+        localStorage.setItem("adminToken", response.data.token);
+        navigate("/admin/dashboard");
       } else {
         setError("Invalid response format. Token missing.");
         console.error("Token missing in response");
@@ -55,7 +50,7 @@ const AdminLogin = () => {
       <div className="absolute inset-0 bg-black bg-opacity-40 z-0" />
       <div className="relative z-10 bg-white/90 backdrop-blur-lg p-10 rounded-2xl shadow-2xl w-full max-w-md border border-green-200">
         <h2 className="text-3xl font-bold text-center text-green-600 mb-6">
-          LYC Admin
+          The Thorn & Thatch Admin
         </h2>
         <p className="text-sm text-center text-gray-500 mb-8">
           Enter your credentials to access the dashboard

@@ -75,7 +75,7 @@ app.use("/api/admin", AdminAuth); // Admin Auth routes
 app.use("/api/upload", Uploads); // Image upload route
 app.use("/api/faq", faqRoutes); // FAQ routes
 app.use("/api/gallery", GalleryRoute); // FAQ routes
-app.use("/api/blog", blog); // FAQ routes
+app.use("/api/blogs", blog); // FAQ routes
 app.use("/api/visitor", Visitor); // visitor
 app.use("/api/testimonial", Testimonial); // FAQ routes
 

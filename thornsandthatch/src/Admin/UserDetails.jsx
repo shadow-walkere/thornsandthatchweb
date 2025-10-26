@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-// import CircularProgress from "@mui/material/CircularProgress";
 import { Users, Loader } from "lucide-react";
 import {
   BarChart,
@@ -21,21 +20,20 @@ const UsersDetails = () => {
   const [error, setError] = useState(null);
   const [weeklyData, setWeeklyData] = useState([]);
   const navigate = useNavigate();
-  
+
   const fetchData = async () => {
     try {
       setLoading(true);
       const userToken = localStorage.getItem("adminToken");
-      if (!userToken) throw new Error("No token found. Please log in.");
 
       // Fetch total visitor count
       const visitorResponse = await fetch(
-        `${SERVER_URL}/api/visitors/visitor-count`,
+        `${SERVER_URL}/api/visitor/visitor-count`,
         {
           method: "GET",
           headers: {
             "Content-Type": "application/json",
-            Authorization: `Bearer ${userToken}`,
+            ...(userToken && { Authorization: `Bearer ${userToken}` }),
           },
         }
       );
@@ -52,10 +50,10 @@ const UsersDetails = () => {
 
       // Fetch weekly stats for chart
       const chartResponse = await fetch(
-        `${SERVER_URL}/api/visitors/weekly-stats`,
+        `${SERVER_URL}/api/visitor/weekly-stats`,
         {
           headers: {
-            Authorization: `Bearer ${userToken}`,
+            ...(userToken && { Authorization: `Bearer ${userToken}` }),
           },
         }
       );
@@ -75,7 +73,7 @@ const UsersDetails = () => {
 
   useEffect(() => {
     fetchData();
-  }, []); // Fetch the visitor count data when the component mounts
+  }, []);
 
   const handleLogout = () => {
     localStorage.removeItem("adminToken");
@@ -131,7 +129,6 @@ const UsersDetails = () => {
         </h2>
         <div style={{ width: "100%", height: 300 }}>
           <ResponsiveContainer width="100%" height="100%">
-            {/* <BarChart data={dummyData}> */}
             <BarChart data={weeklyData}>
               <CartesianGrid strokeDasharray="3 3" />
               <XAxis dataKey="name" />

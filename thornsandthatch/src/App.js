@@ -51,7 +51,6 @@ import FAQs from "./pages/FAQs";
 import Home from "./pages/Home";
 import Services from "./pages/Services.jsx";
 import ScrollTop from "./components/ScrollTop.jsx";
-// import UsersDetails from "./Admin/UserDetails";
 import AdminFAQs from "./Admin/AdminFAQs.jsx";
 import ManageBlogs from "./Admin/ManageBlogs";
 import AdminTestimonials from "./Admin/AdminTestimonials.jsx";
@@ -105,15 +104,16 @@ function AppLayout() {
 function AppRoutes() {
   return (
     <Routes>
-      <Route exact path="/" element={<Home />} />
+      <Route path="/" element={<Home />} />
       <Route path="/about" element={<About />} />
       <Route path="/gallery" element={<Gallery />} />
       <Route path="/contact" element={<ContactUs />} />
       <Route path="/blog" element={<Blog />} />
       <Route path="/services" element={<Services />} />
       <Route path="/FAQs" element={<FAQs />} />
-      {/* <Route path="/events/event-details" element={<EventDetails />} /> */}
-      {/* <Route path="*" element={<NotFound />} /> */}
+
+      {/* Catch-all route for 404 */}
+      <Route path="*" element={<Navigate to="/" replace />} />
 
       {/* Admin routes */}
       <Route path="/admin" element={<AdminLogin />} />
@@ -125,14 +125,12 @@ function AppRoutes() {
           </ProtectedRoute>
         }
       >
-        <Route index element={<Navigate to="visitors" replace />} />
-        {/* <Route path="visitors" element={<UsersDetails />} /> */}
+        {/* Changed to redirect to blog instead of non-existent visitors */}
+        <Route index element={<Navigate to="blog" replace />} />
 
         <Route path="blog" element={<ManageBlogs />} />
         <Route path="testimonials" element={<AdminTestimonials />} />
-
         <Route path="faqs" element={<AdminFAQs />} />
-
         <Route path="gallery" element={<ManageGallery />} />
       </Route>
     </Routes>
