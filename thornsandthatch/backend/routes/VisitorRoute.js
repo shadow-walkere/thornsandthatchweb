@@ -1,8 +1,28 @@
 const express = require("express");
 const router = express.Router();
 const Visitor = require("../models/Visitor");
+const jwt = require("jsonwebtoken");
 
-// Track Visitor
+// Middleware to verify admin token (for protected routes)
+const verifyAdmin = (req, res, next) => {
+  const authHeader = req.headers.authorization;
+
+  if (!authHeader || !authHeader.startsWith("Bearer ")) {
+    return res.status(401).json({ message: "No token provided" });
+  }
+
+  const token = authHeader.split(" ")[1];
+
+  try {
+    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+    req.admin = decoded;
+    next();
+  } catch (error) {
+    return res.status(401).json({ message: "Invalid or expired token" });
+  }
+};
+
+// Track Visitor (PUBLIC - no auth needed)
 router.post("/track-visitor", async (req, res) => {
   try {
     const today = new Date();
@@ -24,20 +44,42 @@ router.post("/track-visitor", async (req, res) => {
   }
 });
 
-// Get today's visitor count
-router.get("/visitor-count", async (req, res) => {
+// Get total visitor count across all days (PROTECTED)
+router.get("/visitor-count", verifyAdmin, async (req, res) => {
   try {
-    const today = new Date().toISOString().split("T")[0];
-    const visitorData = await Visitor.findOne({ date: today });
-    res.status(200).json({ visitorCount: visitorData?.visitorCount || 0 });
+    // Get total count across all days
+    const result = await Visitor.aggregate([
+      {
+        $group: {
+          _id: null,
+          totalVisitors: { $sum: "$visitorCount" },
+        },
+      },
+    ]);
+
+    const totalVisitors = result.length > 0 ? result[0].totalVisitors : 0;
+
+    res.status(200).json({ visitorCount: totalVisitors });
   } catch (error) {
     console.error("❌ Error in /visitor-count:", error);
     res.status(500).json({ message: "Error fetching visitor count" });
   }
 });
 
-// Weekly Stats
-router.get("/weekly-stats", async (req, res) => {
+// Get today's visitor count (PROTECTED - optional, you can make it public)
+router.get("/today-count", verifyAdmin, async (req, res) => {
+  try {
+    const today = new Date().toISOString().split("T")[0];
+    const visitorData = await Visitor.findOne({ date: today });
+    res.status(200).json({ visitorCount: visitorData?.visitorCount || 0 });
+  } catch (error) {
+    console.error("❌ Error in /today-count:", error);
+    res.status(500).json({ message: "Error fetching today's visitor count" });
+  }
+});
+
+// Weekly Stats (PROTECTED)
+router.get("/weekly-stats", verifyAdmin, async (req, res) => {
   try {
     const weeklyData = await Visitor.find({})
       .sort({ date: -1 })

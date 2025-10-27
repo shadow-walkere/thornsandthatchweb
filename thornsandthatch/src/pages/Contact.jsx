@@ -1,32 +1,57 @@
 import { useRef, useState } from "react";
 import { motion } from "framer-motion";
-import emailjs from "emailjs-com";
 import { MapPin, Phone, Mail, Clock, Leaf } from "lucide-react";
 
 export default function Contact() {
   const formRef = useRef();
-  const [status, setStatus] = useState("");
+  const [status, setStatus] = useState({ type: "", message: "" });
+  const [loading, setLoading] = useState(false);
 
-  const sendEmail = (e) => {
+  const sendEmail = async (e) => {
     e.preventDefault();
-    setStatus("Sending...");
+    setLoading(true);
+    setStatus({ type: "", message: "" });
 
-    emailjs
-      .sendForm(
-        "service_ay31rg9",
-        "template_bo4u20x",
-        formRef.current,
-        "public_XxUfQ-js5IPCQina"
-      )
-      .then(
-        () => {
-          setStatus("✅ Message sent successfully!");
-          formRef.current.reset();
+    const formData = {
+      name: formRef.current.name.value,
+      email: formRef.current.email.value,
+      subject: "Contact Form Submission - The Thorn & Thatch Gardens",
+      message: formRef.current.message.value,
+    };
+
+    try {
+      const response = await fetch("/api/email/send-mail", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
         },
-        () => {
-          setStatus("❌ Failed to send. Please try again later.");
-        }
-      );
+        body: JSON.stringify(formData),
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        setStatus({
+          type: "success",
+          message: "✅ Message sent successfully! We'll get back to you soon.",
+        });
+        formRef.current.reset();
+      } else {
+        setStatus({
+          type: "error",
+          message: data.error || "❌ Failed to send. Please try again later.",
+        });
+      }
+    } catch (error) {
+      console.error("Email error:", error);
+      setStatus({
+        type: "error",
+        message:
+          "❌ Network error. Please check your connection and try again.",
+      });
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -50,7 +75,7 @@ export default function Contact() {
             Get in Touch with Nature
           </h1>
           <p className="text-lg text-[#d8f3dc] max-w-2xl mx-auto">
-            We’d love to hear from you — let’s create your next beautiful
+            We'd love to hear from you — let's create your next beautiful
             experience at{" "}
             <span className="font-semibold text-white">
               The Thorn & Thatch Gardens
@@ -120,7 +145,8 @@ export default function Contact() {
                     type={field === "email" ? "email" : "text"}
                     name={field}
                     required
-                    className="peer w-full px-4 py-3 border border-gray-300 rounded-xl bg-white focus:outline-none focus:ring-2 focus:ring-[#2d6a4f] placeholder-transparent"
+                    disabled={loading}
+                    className="peer w-full px-4 py-3 border border-gray-300 rounded-xl bg-white focus:outline-none focus:ring-2 focus:ring-[#2d6a4f] placeholder-transparent disabled:opacity-50 disabled:cursor-not-allowed"
                     placeholder={`Your ${field === "name" ? "Name" : "Email"}`}
                   />
                   <label className="absolute left-4 top-3 text-gray-500 text-sm transition-all peer-placeholder-shown:top-3.5 peer-placeholder-shown:text-gray-400 peer-placeholder-shown:text-base peer-focus:top-0 peer-focus:text-sm peer-focus:text-[#2d6a4f] bg-white/70 px-1">
@@ -134,7 +160,8 @@ export default function Contact() {
                   rows="5"
                   name="message"
                   required
-                  className="peer w-full px-4 py-3 border border-gray-300 rounded-xl bg-white focus:outline-none focus:ring-2 focus:ring-[#2d6a4f] placeholder-transparent"
+                  disabled={loading}
+                  className="peer w-full px-4 py-3 border border-gray-300 rounded-xl bg-white focus:outline-none focus:ring-2 focus:ring-[#2d6a4f] placeholder-transparent disabled:opacity-50 disabled:cursor-not-allowed"
                   placeholder="Your Message"
                 ></textarea>
                 <label className="absolute left-4 top-3 text-gray-500 text-sm transition-all peer-placeholder-shown:top-3.5 peer-placeholder-shown:text-gray-400 peer-placeholder-shown:text-base peer-focus:top-0 peer-focus:text-sm peer-focus:text-[#2d6a4f] bg-white/70 px-1">
@@ -143,20 +170,35 @@ export default function Contact() {
               </div>
 
               <motion.button
-                whileHover={{
-                  scale: 1.05,
-                  boxShadow: "0px 0px 15px #1b4332",
-                }}
-                whileTap={{ scale: 0.95 }}
+                whileHover={
+                  !loading
+                    ? {
+                        scale: 1.05,
+                        boxShadow: "0px 0px 15px #1b4332",
+                      }
+                    : {}
+                }
+                whileTap={!loading ? { scale: 0.95 } : {}}
                 type="submit"
-                className="w-full rounded-full bg-[#2d6a4f] hover:bg-[#1b4332] text-white font-medium px-6 py-3 transition"
+                disabled={loading}
+                className="w-full rounded-full bg-[#2d6a4f] hover:bg-[#1b4332] text-white font-medium px-6 py-3 transition disabled:opacity-50 disabled:cursor-not-allowed"
               >
-                Send Message
+                {loading ? "Sending..." : "Send Message"}
               </motion.button>
             </form>
 
-            {status && (
-              <p className="mt-4 text-sm text-center text-gray-700">{status}</p>
+            {status.message && (
+              <motion.div
+                initial={{ opacity: 0, y: -10 }}
+                animate={{ opacity: 1, y: 0 }}
+                className={`mt-4 p-4 rounded-lg text-sm text-center ${
+                  status.type === "success"
+                    ? "bg-green-50 text-green-700 border border-green-200"
+                    : "bg-red-50 text-red-700 border border-red-200"
+                }`}
+              >
+                {status.message}
+              </motion.div>
             )}
           </motion.div>
 
@@ -173,13 +215,13 @@ export default function Contact() {
                 Visit or Call Us
               </h2>
               <p className="text-gray-700 mb-8 leading-relaxed">
-                Whether you’re planning a garden wedding, a weekend retreat, or
+                Whether you're planning a garden wedding, a weekend retreat, or
                 an intimate family picnic,{" "}
                 <span className="font-medium text-[#2d6a4f]">
                   The Thorn & Thatch Gardens
                 </span>{" "}
                 offers a sanctuary of peace and beauty. Reach out to our team
-                today — we’ll be delighted to assist with bookings, events, or
+                today — we'll be delighted to assist with bookings, events, or
                 special arrangements.
               </p>
 

@@ -113,11 +113,12 @@ function ManageGallery() {
           onChange={(e) => setCategory(e.target.value)}
           className="block border px-3 py-2 rounded w-full"
         >
-          <option value="">Select Category</option>
-          <option value="Youth">Youth</option>
-          <option value="Outreach">Outreach</option>
-          <option value="Events">Events</option>
-          <option value="Other">Other</option>
+          <option value="Wedding">Wedding</option>
+          <option value="Food">Food & Drinks</option>
+          <option value="Accommodation">Accommodation</option>
+          <option value="Other">Team Building</option>
+          <option value="Picnics">Picnics</option>
+          <option value="Adventure Playground">Adventure Playground</option>
         </select>
 
         {preview && (
