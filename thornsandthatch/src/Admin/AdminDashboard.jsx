@@ -32,11 +32,13 @@ const AdminDashboard = () => {
         <div className="flex items-center justify-between mb-10 mt-6 md:mt-0">
           <div className="flex items-center gap-3">
             <img
-              src="../../cropped_circle_image.png"
+              src="/assets/logo1.jpg"
               alt="logo"
               className="w-9 h-9 rounded-full border-2 border-green-500 object-cover"
             />
-            <h2 className="text-2xl font-extrabold text-green-400">LYC</h2>
+            <h2 className="text-2xl font-extrabold text-green-400">
+              The Thorn and Thatch
+            </h2>
           </div>
 
           {/* Close button (mobile) */}
