@@ -15,15 +15,13 @@ const AdminDashboard = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
 
   const handleLogout = () => {
-    // Clear the admin token from local storage
     localStorage.removeItem("adminToken");
-    // Redirect to the admin login page
     window.location.href = "/admin";
   };
 
   return (
     <div className="flex h-screen font-inter text-white">
-      {/* ──────────────────  Sidebar  ────────────────── */}
+      {/* ────────────────── Sidebar ────────────────── */}
       <aside
         className={`bg-gray-800 border-r border-gray-700 fixed md:relative z-20 top-0 h-full w-64 p-5 transition-transform duration-300
         ${
@@ -34,14 +32,16 @@ const AdminDashboard = () => {
         <div className="flex items-center justify-between mb-10 mt-6 md:mt-0">
           <div className="flex items-center gap-3">
             <img
-              src="../../cropped_circle_image.png"
+              src="/assets/logo1.jpg"
               alt="logo"
               className="w-9 h-9 rounded-full border-2 border-green-500 object-cover"
             />
-            <h2 className="text-2xl font-extrabold text-green-400">LYC</h2>
+            <h2 className="text-2xl font-extrabold text-green-400">
+              The Thorn and Thatch
+            </h2>
           </div>
 
-          {/* Close btn (mobile) */}
+          {/* Close button (mobile) */}
           <button
             onClick={() => setIsSidebarOpen(false)}
             className="md:hidden hover:text-green-400"
@@ -50,15 +50,17 @@ const AdminDashboard = () => {
           </button>
         </div>
 
-        {/* Nav links */}
+        {/* ────────────────── Navigation Links ────────────────── */}
         <nav>
           <ul className="space-y-4">
             <li>
               <NavLink
-                to="visitors"
+                to="/admin/dashboard/visitors"
                 className={({ isActive }) =>
                   `flex items-center gap-3 text-lg font-medium transition-colors duration-200 ${
-                    isActive ? "text-green-400" : "hover:text-green-400"
+                    isActive
+                      ? "text-green-400 bg-gray-700 px-3 py-2 rounded-lg"
+                      : "hover:text-green-400"
                   }`
                 }
               >
@@ -69,10 +71,12 @@ const AdminDashboard = () => {
 
             <li>
               <NavLink
-                to="blog"
+                to="/admin/dashboard/blog"
                 className={({ isActive }) =>
                   `flex items-center gap-3 text-lg font-medium transition-colors duration-200 ${
-                    isActive ? "text-green-400" : "hover:text-green-400"
+                    isActive
+                      ? "text-green-400 bg-gray-700 px-3 py-2 rounded-lg"
+                      : "hover:text-green-400"
                   }`
                 }
               >
@@ -83,10 +87,12 @@ const AdminDashboard = () => {
 
             <li>
               <NavLink
-                to="testimonials"
+                to="/admin/dashboard/testimonials"
                 className={({ isActive }) =>
                   `flex items-center gap-3 text-lg font-medium transition-colors duration-200 ${
-                    isActive ? "text-green-400" : "hover:text-green-400"
+                    isActive
+                      ? "text-green-400 bg-gray-700 px-3 py-2 rounded-lg"
+                      : "hover:text-green-400"
                   }`
                 }
               >
@@ -97,10 +103,12 @@ const AdminDashboard = () => {
 
             <li>
               <NavLink
-                to="faqs"
+                to="/admin/dashboard/faqs"
                 className={({ isActive }) =>
                   `flex items-center gap-3 text-lg font-medium transition-colors duration-200 ${
-                    isActive ? "text-green-400" : "hover:text-green-400"
+                    isActive
+                      ? "text-green-400 bg-gray-700 px-3 py-2 rounded-lg"
+                      : "hover:text-green-400"
                   }`
                 }
               >
@@ -111,10 +119,12 @@ const AdminDashboard = () => {
 
             <li>
               <NavLink
-                to="gallery"
+                to="/admin/dashboard/gallery"
                 className={({ isActive }) =>
                   `flex items-center gap-3 text-lg font-medium transition-colors duration-200 ${
-                    isActive ? "text-green-400" : "hover:text-green-400"
+                    isActive
+                      ? "text-green-400 bg-gray-700 px-3 py-2 rounded-lg"
+                      : "hover:text-green-400"
                   }`
                 }
               >
@@ -136,13 +146,13 @@ const AdminDashboard = () => {
         </nav>
       </aside>
 
-      {/* ──────────────────  Main Content  ────────────────── */}
+      {/* ────────────────── Main Content ────────────────── */}
       <main
         className={`flex-1 bg-gray-100 text-gray-900 p-6 pt-20 md:pt-6 transition-all duration-300 overflow-y-auto ${
           isSidebarOpen ? "md:ml-2" : ""
         }`}
       >
-        {/* Top bar (mobile toggle) */}
+        {/* Top bar (mobile) */}
         <div className="flex items-center justify-between mb-6 md:hidden">
           <h1 className="text-xl font-bold">Admin Dashboard</h1>
           <button
@@ -159,7 +169,7 @@ const AdminDashboard = () => {
   );
 };
 
-/* Redirect /admin to /admin/products by default */
+// Redirect /admin to /admin
 export const AdminRoutes = () => <Navigate to="admin" replace />;
 
 export default AdminDashboard;

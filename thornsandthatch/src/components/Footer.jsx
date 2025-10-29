@@ -73,6 +73,7 @@ export default function Footer() {
               { to: "/gallery", label: "Gallery" },
               { to: "/blog", label: "Blog" },
               { to: "/contact", label: "Contact" },
+              { to: "/FAQs", label: "FAQs" },
             ].map((link, i) => (
               <li key={i}>
                 <Link

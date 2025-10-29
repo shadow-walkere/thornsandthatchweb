@@ -28,6 +28,7 @@ const ManageBlogs = () => {
       setBlogs(res.data);
     } catch (err) {
       console.error("Error fetching blogs:", err);
+      toast.error("Failed to fetch blogs");
     } finally {
       setLoading(false);
     }
@@ -52,7 +53,7 @@ const ManageBlogs = () => {
 
   const handleApprove = async (id) => {
     try {
-      await axios.put(`${SERVER_URL}/api/blogs/${id}`, { approved: true }); // ✅ fixed route
+      await axios.put(`${SERVER_URL}/api/blogs/${id}`, { approved: true });
       toast.success("Blog approved successfully!");
       fetchBlogs();
     } catch (err) {
@@ -94,87 +95,106 @@ const ManageBlogs = () => {
         </div>
       ) : blogs.length === 0 ? (
         <p className="text-gray-500 text-center font-semibold text-lg">
-          No pending blog posts.
+          No blog posts yet.
         </p>
       ) : (
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           {paginatedBlogs.map((blog) => (
             <div
               key={blog._id}
-              className="bg-white rounded-lg shadow-md p-4 relative hover:shadow-lg"
+              className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg"
             >
-              <h3 className="text-xl font-bold text-green-700">{blog.title}</h3>
-              <p className="text-gray-600 text-sm mb-2">By {blog.author}</p>
-              <p className="text-sm text-gray-700 line-clamp-3">
-                {blog.content}
-              </p>
+              {blog.image && (
+                <img
+                  src={blog.image}
+                  alt={blog.title}
+                  className="w-full h-48 object-cover"
+                />
+              )}
+              <div className="p-4">
+                <h3 className="text-xl font-bold text-green-700">{blog.title}</h3>
+                <p className="text-gray-600 text-sm mb-2">By {blog.author}</p>
+                <p className="text-sm text-gray-700 line-clamp-3">
+                  {blog.content}
+                </p>
 
-              <div className="flex items-center justify-between mt-4 text-sm text-gray-600">
-                <span className="flex items-center gap-1">
-                  <ThumbsUp size={16} className="text-green-600" />
-                  {blog.likes} Likes
-                </span>
-                <span className="italic text-gray-600">
-                  {blog.approved ? "Approved" : "Pending"}
-                </span>
-              </div>
+                <div className="flex items-center justify-between mt-4 text-sm text-gray-600">
+                  <span className="flex items-center gap-1">
+                    <ThumbsUp size={16} className="text-green-600" />
+                    {blog.likes} Likes
+                  </span>
+                  <span
+                    className={`px-2 py-1 rounded text-xs ${
+                      blog.approved
+                        ? "bg-green-100 text-green-700"
+                        : "bg-yellow-100 text-yellow-700"
+                    }`}
+                  >
+                    {blog.approved ? "Approved" : "Pending"}
+                  </span>
+                </div>
 
-              <div className="flex justify-end gap-3 mt-3">
-                <button
-                  onClick={() => handleApprove(blog._id)}
-                  className="text-green-600 hover:text-green-800"
-                  title="Approve"
-                >
-                  <CheckCircle size={18} />
-                </button>
-                <button
-                  onClick={() => handleEdit(blog)}
-                  className="text-blue-600 hover:text-blue-800"
-                  title="Edit"
-                >
-                  <Pencil size={18} />
-                </button>
-                <button
-                  onClick={() => handleDelete(blog._id)}
-                  className="text-red-600 hover:text-red-800"
-                  title="Delete"
-                >
-                  <Trash2 size={18} />
-                </button>
+                <div className="flex justify-end gap-3 mt-3">
+                  {!blog.approved && (
+                    <button
+                      onClick={() => handleApprove(blog._id)}
+                      className="text-green-600 hover:text-green-800"
+                      title="Approve"
+                    >
+                      <CheckCircle size={18} />
+                    </button>
+                  )}
+                  <button
+                    onClick={() => handleEdit(blog)}
+                    className="text-blue-600 hover:text-blue-800"
+                    title="Edit"
+                  >
+                    <Pencil size={18} />
+                  </button>
+                  <button
+                    onClick={() => handleDelete(blog._id)}
+                    className="text-red-600 hover:text-red-800"
+                    title="Delete"
+                  >
+                    <Trash2 size={18} />
+                  </button>
+                </div>
               </div>
             </div>
           ))}
         </div>
       )}
 
-      {/* Pagination */}
-      <div className="flex justify-center items-center space-x-4 mt-4">
-        <button
-          disabled={currentPage === 1}
-          onClick={() => setCurrentPage((p) => p - 1)}
-          className="px-4 py-2 bg-green-900 text-white rounded disabled:opacity-50"
-        >
-          Prev
-        </button>
-        {[...Array(totalPages)].map((_, i) => (
+      {/* Pagination - only show if more than 1 page */}
+      {totalPages > 1 && (
+        <div className="flex justify-center items-center space-x-4 mt-6">
           <button
-            key={i}
-            className={`px-3 py-1 rounded-full text-sm font-medium ${
-              currentPage === i + 1 ? "bg-green-500 text-white" : "bg-green-100"
-            }`}
-            onClick={() => setCurrentPage(i + 1)}
+            disabled={currentPage === 1}
+            onClick={() => setCurrentPage((p) => p - 1)}
+            className="px-4 py-2 bg-green-900 text-white rounded disabled:opacity-50"
           >
-            {i + 1}
+            Prev
           </button>
-        ))}
-        <button
-          disabled={currentPage === totalPages}
-          onClick={() => setCurrentPage((p) => p + 1)}
-          className="px-4 py-2 bg-green-900 text-white rounded disabled:opacity-50"
-        >
-          Next
-        </button>
-      </div>
+          {[...Array(totalPages)].map((_, i) => (
+            <button
+              key={i}
+              className={`px-3 py-1 rounded-full text-sm font-medium ${
+                currentPage === i + 1 ? "bg-green-500 text-white" : "bg-green-100"
+              }`}
+              onClick={() => setCurrentPage(i + 1)}
+            >
+              {i + 1}
+            </button>
+          ))}
+          <button
+            disabled={currentPage === totalPages}
+            onClick={() => setCurrentPage((p) => p + 1)}
+            className="px-4 py-2 bg-green-900 text-white rounded disabled:opacity-50"
+          >
+            Next
+          </button>
+        </div>
+      )}
 
       {modalOpen && (
         <BlogFormModal

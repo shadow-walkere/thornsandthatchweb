@@ -1,6 +1,8 @@
 "use client";
 import Hero from "../components/Hero";
+
 import { motion } from "framer-motion";
+import FAQs from "./FAQs";
 
 export default function Home() {
   const fadeUp = (delay = 0) => ({
@@ -202,6 +204,9 @@ export default function Home() {
               </h4>
             </motion.div>
           ))}
+        </div>
+        <div>
+          <FAQs />
         </div>
       </section>
     </div>

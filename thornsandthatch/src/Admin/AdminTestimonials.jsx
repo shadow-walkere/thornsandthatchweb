@@ -9,21 +9,24 @@ function AdminTestimonials() {
     name: "",
     message: "",
     isVerified: false,
+    image: null,
   });
+  const [preview, setPreview] = useState(null);
   const [editingId, setEditingId] = useState(null);
 
-  // Pagination states
+  // Pagination
   const [currentPage, setCurrentPage] = useState(1);
   const testimonialsPerPage = 5;
 
-  // Selected testimonials for bulk deletion
+  // Selected for bulk delete
   const [selectedIds, setSelectedIds] = useState([]);
 
+  // Fetch all testimonials
   const fetchTestimonials = async () => {
     try {
       const res = await axios.get(`${SERVER_URL}/api/testimonials`);
       setTestimonials(res.data);
-      setSelectedIds([]); // Reset selection on reload
+      setSelectedIds([]);
     } catch (err) {
       console.error("Error fetching testimonials:", err);
     }
@@ -33,15 +36,39 @@ function AdminTestimonials() {
     fetchTestimonials();
   }, []);
 
+  // Handle file input change
+  const handleFileChange = (e) => {
+    const file = e.target.files[0];
+    setForm({ ...form, image: file });
+    setPreview(file ? URL.createObjectURL(file) : null);
+  };
+
+  // Handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
+      const formData = new FormData();
+      formData.append("name", form.name);
+      formData.append("message", form.message);
+      formData.append("isVerified", form.isVerified);
+      if (form.image) formData.append("image", form.image);
+
       if (editingId) {
-        await axios.put(`${SERVER_URL}/api/testimonials/${editingId}`, form);
+        await axios.put(
+          `${SERVER_URL}/api/testimonials/${editingId}`,
+          formData,
+          {
+            headers: { "Content-Type": "multipart/form-data" },
+          }
+        );
       } else {
-        await axios.post(`${SERVER_URL}/api/testimonials`, form);
+        await axios.post(`${SERVER_URL}/api/testimonials`, formData, {
+          headers: { "Content-Type": "multipart/form-data" },
+        });
       }
-      setForm({ name: "", message: "", isVerified: false });
+
+      setForm({ name: "", message: "", isVerified: false, image: null });
+      setPreview(null);
       setEditingId(null);
       fetchTestimonials();
     } catch (err) {
@@ -49,6 +76,7 @@ function AdminTestimonials() {
     }
   };
 
+  // Handle delete
   const handleDelete = async (id) => {
     if (window.confirm("Are you sure you want to delete this testimonial?")) {
       try {
@@ -60,21 +88,26 @@ function AdminTestimonials() {
     }
   };
 
-  const handleEdit = (testimonial) => {
+  // Handle edit
+  const handleEdit = (t) => {
     setForm({
-      name: testimonial.name,
-      message: testimonial.message,
-      isVerified: testimonial.isVerified,
+      name: t.name,
+      message: t.message,
+      isVerified: t.isVerified,
+      image: null, // Only replaced if user uploads a new file
     });
-    setEditingId(testimonial._id);
+    setPreview(t.image ? `${SERVER_URL}/${t.image}` : null);
+    setEditingId(t._id);
   };
 
+  // Handle selection toggle
   const toggleSelect = (id) => {
     setSelectedIds((prev) =>
       prev.includes(id) ? prev.filter((x) => x !== id) : [...prev, id]
     );
   };
 
+  // Handle bulk delete
   const handleBulkDelete = async () => {
     if (selectedIds.length === 0) return;
     if (!window.confirm(`Delete ${selectedIds.length} testimonials?`)) return;
@@ -99,11 +132,14 @@ function AdminTestimonials() {
   const totalPages = Math.ceil(testimonials.length / testimonialsPerPage);
 
   return (
-    <div className="p-6 bg-white text-amber-900">
+    <div className="p-6 bg-white text-amber-900 min-h-screen">
       <h2 className="text-2xl font-bold mb-4">Manage Testimonials</h2>
 
       {/* Form */}
-      <form onSubmit={handleSubmit} className="space-y-4 mb-8">
+      <form
+        onSubmit={handleSubmit}
+        className="space-y-4 mb-8 border border-amber-300 rounded-lg p-4 bg-amber-50"
+      >
         <input
           type="text"
           placeholder="Name"
@@ -119,6 +155,22 @@ function AdminTestimonials() {
           onChange={(e) => setForm({ ...form, message: e.target.value })}
           required
         />
+        <div>
+          <label className="block font-medium mb-1">Upload Image</label>
+          <input
+            type="file"
+            accept="image/*"
+            onChange={handleFileChange}
+            className="border border-amber-300 p-2 rounded w-full"
+          />
+          {preview && (
+            <img
+              src={preview}
+              alt="Preview"
+              className="mt-3 w-24 h-24 object-cover rounded border border-amber-300"
+            />
+          )}
+        </div>
         <label className="flex items-center gap-2">
           <input
             type="checkbox"
@@ -133,6 +185,24 @@ function AdminTestimonials() {
         >
           {editingId ? "Update" : "Add"} Testimonial
         </button>
+        {editingId && (
+          <button
+            type="button"
+            onClick={() => {
+              setForm({
+                name: "",
+                message: "",
+                isVerified: false,
+                image: null,
+              });
+              setPreview(null);
+              setEditingId(null);
+            }}
+            className="ml-2 bg-gray-400 text-white px-4 py-2 rounded hover:bg-gray-500"
+          >
+            Cancel
+          </button>
+        )}
       </form>
 
       {/* Bulk Delete Button */}
@@ -152,30 +222,39 @@ function AdminTestimonials() {
         {currentTestimonials.map((t) => (
           <li
             key={t._id}
-            className={`border border-amber-300 rounded p-4 ${
+            className={`border border-amber-300 rounded p-4 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 ${
               selectedIds.includes(t._id) ? "bg-amber-100" : "bg-amber-50"
             }`}
           >
-            <label className="flex items-center gap-2 mb-2">
+            <div className="flex items-center gap-4">
               <input
                 type="checkbox"
                 checked={selectedIds.includes(t._id)}
                 onChange={() => toggleSelect(t._id)}
               />
-              <span className="font-semibold">{t.name}</span>
-            </label>
-            <p className="italic mb-2">"{t.message}"</p>
-            <p className="text-sm">
-              Status:{" "}
-              <span
-                className={`font-bold ${
-                  t.isVerified ? "text-green-600" : "text-red-500"
-                }`}
-              >
-                {t.isVerified ? "Verified" : "Unverified"}
-              </span>
-            </p>
-            <div className="mt-2 space-x-2">
+              {t.image && (
+                <img
+                  src={`${SERVER_URL}/${t.image}`}
+                  alt={t.name}
+                  className="w-16 h-16 object-cover rounded border"
+                />
+              )}
+              <div>
+                <p className="font-semibold">{t.name}</p>
+                <p className="italic text-sm">"{t.message}"</p>
+                <p className="text-sm mt-1">
+                  Status:{" "}
+                  <span
+                    className={`font-bold ${
+                      t.isVerified ? "text-green-600" : "text-red-500"
+                    }`}
+                  >
+                    {t.isVerified ? "Verified" : "Unverified"}
+                  </span>
+                </p>
+              </div>
+            </div>
+            <div className="flex gap-3">
               <button
                 onClick={() => handleEdit(t)}
                 className="text-blue-600 hover:underline"

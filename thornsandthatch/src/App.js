@@ -32,7 +32,6 @@
 //     </Router>
 //   );
 // }
-
 import {
   BrowserRouter as Router,
   Routes,
@@ -41,31 +40,40 @@ import {
   Navigate,
 } from "react-router-dom";
 import { Toaster } from "react-hot-toast";
+
+// 🌐 Public Pages
+import Home from "./pages/Home";
+import About from "./pages/About.jsx";
+import Services from "./pages/Services.jsx";
 import Gallery from "./pages/Gallery.jsx";
 import ContactUs from "./pages/Contact.jsx";
 import Blog from "./pages/Blog.jsx";
-import About from "./pages/About.jsx";
+import FAQs from "./pages/FAQs";
+
+// 🧩 Layout Components
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
-import FAQs from "./pages/FAQs";
-import Home from "./pages/Home";
-import Services from "./pages/Services.jsx";
 import ScrollTop from "./components/ScrollTop.jsx";
-// import UsersDetails from "./Admin/UserDetails";
-import AdminFAQs from "./Admin/AdminFAQs.jsx";
-import ManageBlogs from "./Admin/ManageBlogs";
-import AdminTestimonials from "./Admin/AdminTestimonials.jsx";
-import ManageGallery from "./Admin/ManageGallery";
+import VisitorTracker from "./components/VisitorTracker.jsx";
+import BlogPost from "./components/BlogPost.jsx";
+
+// 🔐 Admin Pages
 import AdminLogin from "./Admin/AdminLogin.jsx";
 import ProtectedRoute from "./Admin/ProtectedRoute.jsx";
 import AdminDashboard from "./Admin/AdminDashboard.jsx";
-import VisitorTracker from "./components/VisitorTracker.jsx";
+import ManageBlogs from "./Admin/ManageBlogs";
+import AdminTestimonials from "./Admin/AdminTestimonials.jsx";
+import AdminFAQs from "./Admin/AdminFAQs.jsx";
+import UsersDetails from "./Admin/UserDetails.jsx";
+import ManageGallery from "./Admin/ManageGallery.jsx";
 
-// 👇 create a wrapper component to manage layout
+// ─────────────────────────────────────────────
+// Layout Wrapper
+// ─────────────────────────────────────────────
 function AppLayout() {
   const location = useLocation();
 
-  // Check if current route starts with /admin
+  // Hide navbar & footer on admin routes
   const isAdminRoute = location.pathname.startsWith("/admin");
 
   return (
@@ -76,22 +84,15 @@ function AppLayout() {
         reverseOrder={false}
         toastOptions={{
           success: {
-            style: {
-              background: "#D1FAE5",
-              color: "#065F46",
-            },
+            style: { background: "#D1FAE5", color: "#065F46" },
           },
           error: {
-            style: {
-              background: "#FEE2E2",
-              color: "#991B1B",
-            },
+            style: { background: "#FEE2E2", color: "#991B1B" },
           },
         }}
       />
       <VisitorTracker />
 
-      {/* 👇 Only show Navbar & Footer if NOT on admin routes */}
       {!isAdminRoute && <Navbar />}
       <div className="min-h-screen">
         <AppRoutes />
@@ -101,22 +102,25 @@ function AppLayout() {
   );
 }
 
-// 👇 split routes into a separate component
+// ─────────────────────────────────────────────
+// Route Definitions
+// ─────────────────────────────────────────────
 function AppRoutes() {
   return (
     <Routes>
-      <Route exact path="/" element={<Home />} />
+      {/* ─────────────── Public Routes ─────────────── */}
+      <Route path="/" element={<Home />} />
       <Route path="/about" element={<About />} />
       <Route path="/gallery" element={<Gallery />} />
       <Route path="/contact" element={<ContactUs />} />
       <Route path="/blog" element={<Blog />} />
+      <Route path="/blog/:id" element={<BlogPost />} />
       <Route path="/services" element={<Services />} />
       <Route path="/FAQs" element={<FAQs />} />
-      {/* <Route path="/events/event-details" element={<EventDetails />} /> */}
-      {/* <Route path="*" element={<NotFound />} /> */}
-
-      {/* Admin routes */}
+      
+      {/* ─────────────── Admin Routes ─────────────── */}
       <Route path="/admin" element={<AdminLogin />} />
+
       <Route
         path="/admin/dashboard/*"
         element={
@@ -125,21 +129,26 @@ function AppRoutes() {
           </ProtectedRoute>
         }
       >
+        {/* ✅ Default redirect - Changed to visitors */}
         <Route index element={<Navigate to="visitors" replace />} />
-        {/* <Route path="visitors" element={<UsersDetails />} /> */}
 
+        {/* ✅ All admin subpages */}
+        <Route path="visitors" element={<UsersDetails />} />
         <Route path="blog" element={<ManageBlogs />} />
         <Route path="testimonials" element={<AdminTestimonials />} />
-
         <Route path="faqs" element={<AdminFAQs />} />
-
         <Route path="gallery" element={<ManageGallery />} />
       </Route>
+
+      {/* 404 fallback - Moved to end */}
+      <Route path="*" element={<Navigate to="/" replace />} />
     </Routes>
   );
 }
 
-// 👇 Main App
+// ─────────────────────────────────────────────
+// Root App
+// ─────────────────────────────────────────────
 function App() {
   return (
     <Router>
