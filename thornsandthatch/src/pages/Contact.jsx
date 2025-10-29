@@ -1,6 +1,7 @@
 import { useRef, useState } from "react";
 import { motion } from "framer-motion";
 import { MapPin, Phone, Mail, Clock, Leaf } from "lucide-react";
+import { toast } from "react-hot-toast";
 
 export default function Contact() {
   const formRef = useRef();
@@ -20,30 +21,36 @@ export default function Contact() {
     };
 
     try {
-      const response = await fetch("/api/email/send-mail", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData),
-      });
+      const response = await fetch(
+        "http://localhost:5000/api/contact/send-mail",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(formData),
+        }
+      );
 
-      const data = await response.json();
+      const data = await response.json().catch(() => null);
 
-      if (response.ok) {
+      if (response.ok && data?.success) {
         setStatus({
           type: "success",
           message: "✅ Message sent successfully! We'll get back to you soon.",
         });
+        toast.success("Email sent successfully!");
         formRef.current.reset();
       } else {
         setStatus({
           type: "error",
-          message: data.error || "❌ Failed to send. Please try again later.",
+          message: data?.error || "❌ Failed to send. Please try again later.",
         });
+        toast.error(data?.error || "Failed to send message.");
       }
     } catch (error) {
       console.error("Email error:", error);
+      toast.error(`Email error: ${error.message}`);
       setStatus({
         type: "error",
         message:

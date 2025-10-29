@@ -18,7 +18,6 @@ const GalleryRoute = require("./routes/GalleryRoute.js");
 const blog = require("./routes/BlogRoute.js");
 const email = require("./routes/Email.js");
 
-
 dotenv.config();
 connectdb();
 
@@ -79,7 +78,7 @@ app.use("/api/gallery", GalleryRoute); // Gallery routes
 app.use("/api/blogs", blog); // Blog routes
 app.use("/api/visitor", Visitor); // Visitor routes
 app.use("/api/contact", email); // Email/Contact routes
-app.use("/api/testimonials",Testimonials); // Testimonial routes
+app.use("/api/testimonials", Testimonials); // Testimonial routes
 
 // Health check endpoint
 app.get("/", (req, res) => {
@@ -87,7 +86,7 @@ app.get("/", (req, res) => {
     status: "Server is running",
     port: process.env.PORT || 5000,
     endpoints: [
-      "POST /api/contact/send-mail", // Email endpoint
+      "POST /api/contact", // Email endpoint
       "GET /api/admin",
       "POST /api/upload",
       "GET /api/faq",
