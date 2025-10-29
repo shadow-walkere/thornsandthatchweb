@@ -55,6 +55,7 @@ import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import ScrollTop from "./components/ScrollTop.jsx";
 import VisitorTracker from "./components/VisitorTracker.jsx";
+import BlogPost from "./components/BlogPost.jsx";
 
 // 🔐 Admin Pages
 import AdminLogin from "./Admin/AdminLogin.jsx";
@@ -113,9 +114,10 @@ function AppRoutes() {
       <Route path="/gallery" element={<Gallery />} />
       <Route path="/contact" element={<ContactUs />} />
       <Route path="/blog" element={<Blog />} />
+      <Route path="/blog/:id" element={<BlogPost />} />
       <Route path="/services" element={<Services />} />
       <Route path="/FAQs" element={<FAQs />} />
-
+      
       {/* ─────────────── Admin Routes ─────────────── */}
       <Route path="/admin" element={<AdminLogin />} />
 

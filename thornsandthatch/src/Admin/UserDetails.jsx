@@ -19,6 +19,7 @@ const UsersDetails = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [weeklyData, setWeeklyData] = useState([]);
+
   const navigate = useNavigate();
 
   const fetchData = async () => {

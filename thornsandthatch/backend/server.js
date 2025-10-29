@@ -12,7 +12,7 @@ const AdminAuth = require("./routes/AdminAuth.js");
 const Uploads = require("./routes/UploadRoute.js");
 const faqRoutes = require("./routes/FAQRoute.js");
 const errorHandler = require("./middleware/Errorhandler.js");
-const Visitor = require("./routes/VisitorRoute");
+const Visitor = require("./routes/VisitorRoute.js");
 const Testimonials = require("./routes/TestimonialRoute.js");
 const GalleryRoute = require("./routes/GalleryRoute.js");
 const blog = require("./routes/BlogRoute.js");
@@ -92,7 +92,7 @@ app.get("/", (req, res) => {
       "GET /api/faq",
       "GET /api/gallery",
       "GET /api/blogs",
-      "GET /api/visitor",
+      "GET /api/track-visitor",
       "GET /api/testimonial",
     ],
   });
