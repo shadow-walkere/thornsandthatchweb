@@ -24,10 +24,9 @@ const AdminLogin = () => {
       //   localStorage.setItem("adminToken", response.data.token);
       //   navigate("/admin/dashboard");
       if (response.data && response.data.token) {
-  localStorage.setItem("adminToken", response.data.token);
-  console.log("Token saved:", localStorage.getItem("adminToken")); // Add this
-  navigate("/admin/dashboard");
-
+        localStorage.setItem("adminToken", response.data.token);
+        console.log("Token saved:", localStorage.getItem("adminToken")); // Add this
+        navigate("/admin/dashboard");
       } else {
         setError("Invalid response format. Token missing.");
         console.error("Token missing in response");
