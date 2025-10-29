@@ -196,7 +196,7 @@ router.delete("/:id", async (req, res) => {
   }
 });
 
-// ✅ BULK DELETE testimonials
+// BULK DELETE testimonials
 router.post("/bulk-delete", async (req, res) => {
   try {
     const { ids } = req.body;
