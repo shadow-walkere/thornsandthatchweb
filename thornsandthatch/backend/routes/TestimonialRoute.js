@@ -203,7 +203,7 @@ router.post("/bulk-delete", async (req, res) => {
 
     if (!Array.isArray(ids) || ids.length === 0) {
       return res.status(400).json({
-        message: "Please provide an array of testimonial IDs.",
+        message: "Please provide an array of testimonial ID.",
       });
     }
 
