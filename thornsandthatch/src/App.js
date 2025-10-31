@@ -117,7 +117,7 @@ function AppRoutes() {
       <Route path="/blog/:id" element={<BlogPost />} />
       <Route path="/services" element={<Services />} />
       <Route path="/FAQs" element={<FAQs />} />
-      
+
       {/* ─────────────── Admin Routes ─────────────── */}
       <Route path="/admin" element={<AdminLogin />} />
 

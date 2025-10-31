@@ -19,7 +19,6 @@ const UsersDetails = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [weeklyData, setWeeklyData] = useState([]);
-
   const navigate = useNavigate();
 
   const fetchData = async () => {
@@ -27,7 +26,6 @@ const UsersDetails = () => {
       setLoading(true);
       const userToken = localStorage.getItem("adminToken");
 
-      // Fetch total visitor count
       const visitorResponse = await fetch(
         `${SERVER_URL}/api/visitors/visitor-count`,
         {
@@ -49,7 +47,6 @@ const UsersDetails = () => {
       const visitorData = await visitorResponse.json();
       setVisitorCount(visitorData.visitorCount || 0);
 
-      // Fetch weekly stats for chart
       const chartResponse = await fetch(
         `${SERVER_URL}/api/visitors/weekly-stats`,
         {
@@ -59,9 +56,7 @@ const UsersDetails = () => {
         }
       );
 
-      if (!chartResponse.ok) {
-        throw new Error("Failed to fetch weekly stats.");
-      }
+      if (!chartResponse.ok) throw new Error("Failed to fetch weekly stats.");
 
       const chartData = await chartResponse.json();
       setWeeklyData(chartData);
@@ -77,17 +72,22 @@ const UsersDetails = () => {
   }, []);
 
   const handleLogout = () => {
-    localStorage.removeItem("adminToken");
-    setVisitorCount(0);
-    setError("You have been logged out.");
-    navigate("/admin");
+    const confirmLogout = window.confirm(
+      "Are you sure you want to log out of the admin dashboard?"
+    );
+    if (confirmLogout) {
+      localStorage.removeItem("adminToken");
+      setVisitorCount(0);
+      setError("You have been logged out.");
+      navigate("/admin");
+    }
   };
 
   if (loading) {
     return (
-      <div className="flex items-center justify-center h-screen gap-4">
-        <Loader className="animate-spin" size={40} />
-        Loading visitors...
+      <div className="flex flex-col items-center justify-center h-screen text-green-700">
+        <Loader className="animate-spin mb-3" size={42} />
+        <p className="text-lg font-medium">Loading visitor data...</p>
       </div>
     );
   }
@@ -104,51 +104,64 @@ const UsersDetails = () => {
 
   return (
     <div className="p-8 w-full max-w-5xl mx-auto">
-      <h1 className="text-4xl font-bold text-gray-800 mb-10 text-center">
-        👥 Users Overview
+      <h1 className="text-4xl font-bold text-green-800 mb-10 text-center">
+        👥 User Analytics Overview
       </h1>
 
       {/* Total Visitors Card */}
-      <div className="bg-white rounded-2xl shadow-xl p-6 flex items-center justify-between transition-transform transform hover:scale-[1.02]">
+      <div className="bg-gradient-to-r from-green-50 to-white rounded-2xl shadow-lg p-6 flex items-center justify-between transition-transform transform hover:scale-[1.02] border border-green-100">
         <div>
-          <h2 className="text-xl font-semibold text-gray-700">
+          <h2 className="text-xl font-semibold text-green-800">
             Total Visitors
           </h2>
-          <p className="text-4xl font-bold text-blue-600 mt-2">
+          <p className="text-5xl font-bold text-green-600 mt-2 drop-shadow-sm">
             {visitorCount}
           </p>
         </div>
-        <div className="bg-blue-100 p-4 rounded-full">
-          <Users className="text-blue-500 w-10 h-10" />
+        <div className="bg-green-100 p-4 rounded-full shadow-inner">
+          <Users className="text-green-600 w-10 h-10" />
         </div>
       </div>
 
       {/* Bar Chart */}
-      <div className="mt-10 bg-white p-6 rounded-2xl shadow-lg">
-        <h2 className="text-2xl font-semibold text-gray-700 mb-4">
-          Weekly Visitors
+      <div className="mt-10 bg-white p-6 rounded-2xl shadow-lg border border-green-100">
+        <h2 className="text-2xl font-semibold text-green-800 mb-4 flex items-center gap-2">
+          📊 Weekly Visitor Activity
         </h2>
-        <div style={{ width: "100%", height: 300 }}>
+        <div style={{ width: "100%", height: 320 }}>
           <ResponsiveContainer width="100%" height="100%">
-            <BarChart data={weeklyData}>
-              <CartesianGrid strokeDasharray="3 3" />
-              <XAxis dataKey="name" />
-              <YAxis />
+            <BarChart
+              data={weeklyData}
+              barSize={50} // width of each bar
+              barCategoryGap="20%" // space between categories
+            >
+              <CartesianGrid strokeDasharray="3 3" stroke="#e5e7eb" />
+              <XAxis
+                dataKey="name"
+                tick={{ fill: "#14532d", fontSize: 13 }}
+                interval={0}
+              />
+              <YAxis tick={{ fill: "#14532d" }} width={60} />
               <Tooltip />
               <Legend />
-              <Bar dataKey="visitors" fill="#3b82f6" radius={[8, 8, 0, 0]} />
+              <Bar
+                dataKey="visitors"
+                fill="#16a34a"
+                radius={[10, 10, 0, 0]}
+                animationDuration={800}
+              />
             </BarChart>
           </ResponsiveContainer>
         </div>
       </div>
 
-      {/* Logout */}
+      {/* Logout Button */}
       <div className="mt-10 text-center">
         <button
           onClick={handleLogout}
-          className="bg-gradient-to-r from-red-500 to-red-600 text-white px-6 py-3 rounded-full text-lg shadow-md hover:shadow-lg transition-transform hover:scale-105"
+          className="bg-gradient-to-r from-green-600 to-green-700 text-white px-8 py-3 rounded-full text-lg shadow-lg hover:shadow-2xl transition-transform hover:-translate-y-1"
         >
-          🚪 Logout
+          Logout
         </button>
       </div>
     </div>

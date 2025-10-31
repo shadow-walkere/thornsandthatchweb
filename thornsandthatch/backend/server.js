@@ -93,7 +93,7 @@ app.get("/", (req, res) => {
       "GET /api/gallery",
       "GET /api/blogs",
       "GET /api/track-visitor",
-      "GET /api/testimonial",
+      "GET /api/testimonials",
     ],
   });
 });

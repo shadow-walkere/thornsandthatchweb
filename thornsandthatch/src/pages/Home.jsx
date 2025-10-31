@@ -1,8 +1,8 @@
 "use client";
 import Hero from "../components/Hero";
-
 import { motion } from "framer-motion";
 import FAQs from "./FAQs";
+import Testimonials from "./Testimonials"; // ✅ new import
 
 export default function Home() {
   const fadeUp = (delay = 0) => ({
@@ -150,65 +150,13 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 🌼 Testimonials Section */}
-      <section className="py-20 sm:py-28 bg-gradient-to-b from-[#e9f9ee] to-[#f9fff9] text-center relative">
-        <motion.h3
-          className="text-2xl sm:text-3xl md:text-4xl font-semibold text-[#1b7f4a] mb-10 sm:mb-16"
-          initial="hidden"
-          whileInView="visible"
-          variants={fadeUp(0.1)}
-          viewport={{ once: true }}
-        >
-          What Our Guests Say
-        </motion.h3>
+      {/* 🌼 Testimonials (separate component now) */}
+      <Testimonials />
 
-        <div className="grid md:grid-cols-3 gap-8 sm:gap-10 max-w-6xl mx-auto px-6 sm:px-10">
-          {[
-            {
-              name: "Sarah & Daniel",
-              quote:
-                "Our wedding at The Thorn & Thatch was pure magic — the gardens glowed, the staff went above and beyond, and every detail felt like a dream.",
-              img: "https://i.pinimg.com/1200x/e0/e3/7c/e0e37c3d35480131604a1e2d7db6a4af.jpg",
-            },
-            {
-              name: "Lydia K.",
-              quote:
-                "A serene haven! Whether you’re hosting an event or simply visiting, this place radiates peace and elegance.",
-              img: "https://i.pinimg.com/736x/20/24/21/202421ab7c99981a047bb723ced321d0.jpg",
-            },
-            {
-              name: "Michael O.",
-              quote:
-                "I’ve never seen a venue blend nature and sophistication so seamlessly. Every corner tells a story — absolutely breathtaking.",
-              img: "https://i.pinimg.com/1200x/d5/3c/aa/d53caa5715c4bad706740b140d95a363.jpg",
-            },
-          ].map((testimonial, i) => (
-            <motion.div
-              key={i}
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, delay: i * 0.2 }}
-              viewport={{ once: true }}
-              className="bg-white/80 backdrop-blur-sm border border-[#c6f0d3] shadow-lg rounded-3xl p-8 sm:p-10 flex flex-col items-center hover:scale-[1.03] transition-transform duration-500"
-            >
-              <img
-                src={testimonial.img}
-                alt={testimonial.name}
-                className="w-20 h-20 sm:w-24 sm:h-24 rounded-full object-cover mb-6 border-4 border-[#34c759]/40 shadow-md"
-              />
-              <p className="text-[#2f6042] italic text-sm sm:text-base leading-relaxed mb-4">
-                “{testimonial.quote}”
-              </p>
-              <h4 className="font-semibold text-[#1b7f4a] text-base sm:text-lg">
-                — {testimonial.name}
-              </h4>
-            </motion.div>
-          ))}
-        </div>
-        <div>
-          <FAQs />
-        </div>
-      </section>
+      {/* ❓ FAQs Section */}
+      <div>
+        <FAQs />
+      </div>
     </div>
   );
 }
