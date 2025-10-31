@@ -29,7 +29,7 @@ const UsersDetails = () => {
 
       // Fetch total visitor count
       const visitorResponse = await fetch(
-        `${SERVER_URL}/api/visitor/visitor-count`,
+        `${SERVER_URL}/api/visitors/visitor-count`,
         {
           method: "GET",
           headers: {
@@ -51,7 +51,7 @@ const UsersDetails = () => {
 
       // Fetch weekly stats for chart
       const chartResponse = await fetch(
-        `${SERVER_URL}/api/visitor/weekly-stats`,
+        `${SERVER_URL}/api/visitors/weekly-stats`,
         {
           headers: {
             ...(userToken && { Authorization: `Bearer ${userToken}` }),

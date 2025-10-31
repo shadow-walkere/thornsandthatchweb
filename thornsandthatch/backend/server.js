@@ -76,7 +76,7 @@ app.use("/api/upload", Uploads); // Image upload route
 app.use("/api/faq", faqRoutes); // FAQ routes
 app.use("/api/gallery", GalleryRoute); // Gallery routes
 app.use("/api/blogs", blog); // Blog routes
-app.use("/api/visitor", Visitor); // Visitor routes
+app.use("/api/visitors", Visitor); // Visitor routes
 app.use("/api/contact", email); // Email/Contact routes
 app.use("/api/testimonials", Testimonials); // Testimonial routes
 
