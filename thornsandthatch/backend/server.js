@@ -28,7 +28,7 @@ app.set("trust proxy", 1);
 const allowedOrigins = [
   "http://localhost:3000", // For development
   "http://localhost:3001", // For development
-  "https://magnet-gatepass.onrender.com",
+  "https://thornsandthatchweb.onrender.com",
 ];
 
 app.use(
